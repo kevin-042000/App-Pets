@@ -16,7 +16,7 @@ return new class extends Migration
             $table->int('user_id');
             $table->string('name');
             $table->string('description');
-            $table->string('location');
+            $table->string('location')->nullable();
             $table->date('date_lost');
             $table->string('photo');
             $table->boolean('status')->default(false);

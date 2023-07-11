@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
+ 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -42,4 +42,27 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function profile(){
+    return $this->hasOne(UserProfile::class);
+    }
+
+    public function lostPets(){
+    return $this->hasMany(LostPet::class);
+    }
+    
+    public function foundPets(){
+    return $this->hasMany(FoundPet::class);
+    }
+
+    public function sentMessages(){
+    return $this->hasMany(ChatMessage::class, 'sender_id');
+    }
+
+public function receivedMessages(){
+    return $this->hasMany(ChatMessage::class, 'receiver_id');
+    }
+
+
+
 }
