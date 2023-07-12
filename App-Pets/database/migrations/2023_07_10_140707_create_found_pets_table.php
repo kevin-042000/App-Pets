@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('found_pets', function (Blueprint $table) {
             $table->id();
-            $table->int('user_id');
+            $table->integer('user_id')->nullable();
             $table->string('name');
             $table->string('description');
             $table->string('location');
             $table->date('date_found');
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

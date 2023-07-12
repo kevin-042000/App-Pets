@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
-            $table->int('user_id');
+            $table->integer('user_id');
             $table->string('bio')->nullable();
             $table->date('birthdate')->nullable();
             $table->string('gender')->nullable();
