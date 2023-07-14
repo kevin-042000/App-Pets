@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('found_pets', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
-            $table->string('name');
+            $table->string('name')->nullable();
+            $table->string('title');
             $table->string('description');
             $table->string('location');
             $table->date('date_found');
