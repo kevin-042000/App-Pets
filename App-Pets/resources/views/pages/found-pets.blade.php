@@ -2,6 +2,9 @@
 @section('title','Found Pets')
     
 @section('content')
+{{-- menu de navegacion --}}
+@include('layouts._partials.nav')
+{{-- Formulario de carga de mascotas encontradas --}}
 <section class="cont-form">
     @component('components.form-create')
     @slot('action')

@@ -6,13 +6,19 @@
 
 {{-- Contenido General --}}
 @section('content')
+{{-- Menu de navegacion --}}
+@include('layouts._partials.nav')
 <section class="cont-form">
+{{-- usando un componente form  --}}
     @component('components.form-create')
     @slot('action')
+    {{-- Route a donde apunta el Action del form --}}
         {{ route('lost-pets.store') }}
     @endslot
 @endcomponent
 </section>
+
+{{-- Aqui se empieza a ver los datos de animales peridos --}}
 <section class="contend">
     <ul>
         @forelse ($LostPets as $LostPet)

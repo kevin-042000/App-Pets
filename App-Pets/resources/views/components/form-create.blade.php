@@ -1,8 +1,8 @@
-<form action="{{ $action }}" method="POST" enctype="multipart/form-data">
-    
+<form class="form-create" action="{{ $action }}" method="POST" enctype="multipart/form-data">
 
     @csrf
 
+    <h3>Informa sobre tu Mascota</h3>
     <div>
         <label for="name">Nombre de la mascota:</label>
         <input type="text" name="name" id="name" required>

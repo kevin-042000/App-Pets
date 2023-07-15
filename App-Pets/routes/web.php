@@ -2,19 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\LostPetController;
 use App\Http\Controllers\FoundPetController;
 
-
+// Route de home
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::view('/login', 'pages.login');
-Route::view('/register', 'pages.register');
-Route::post('/register', [LoginController::class, 'register'])->name('login.register');
+// Route login
+Route::view('/login', 'pages.login')->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('login.logout');
 // Route de registro
-
+Route::view('/register', 'pages.register')->name('register');
+Route::post('/register', [LoginController::class, 'register'])->name('login.register');
 // Route de informacion
 Route::get('/info', [InfoController::class, 'index'])->name('info.index');
 // Route de Lost Pets
