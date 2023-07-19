@@ -22,7 +22,7 @@ class FoundPetRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:30|min:3',
+            'title' => 'required|max:30|min:3',
             'description' => 'required|max:255|min:3'
         ];
     }

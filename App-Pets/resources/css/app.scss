@@ -1,3 +1,5 @@
+@import 'bootstrap/scss/bootstrap';
+
 *{
     padding: 0;
     margin: 0;
@@ -6,25 +8,28 @@
 }
 
 body{
-  background-color: rgb(126, 81, 15);
-  // background-image: url(/resources/imagenes-App-Pets/f23.jpg);
+  // background-color: rgb(243, 159, 34);
+  background-image: url(/resources/imagenes-App-Pets/f16.png);
   // background-repeat: no-repeat;
   // background-size: 100vw;
   z-index: -3;
    min-height: 100vh;
 
 // barra de navegacion
-   .nav {
+   .menu {
     width: 100%;
-    height: 3rem;
-    background-color: rgb(44, 131, 59);
+    height: 5rem;
+    background-color: rgb(157, 163, 158);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
     ul {
       list-style: none; 
       display: flex; 
+      flex-direction: row;
       justify-content: center;
       align-items: center;
+      gap: 3rem;
       padding: 0; 
-      padding-top: 1rem;
+      padding-top: 0.4rem;
   
       li {
         margin-right: 10px; 
@@ -34,12 +39,19 @@ body{
         }
 
         a {
-          text-decoration: none; 
-          font-size: 1rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center; 
+          text-align: center; 
+          text-decoration: none;
           color: white;
+          font-size: 1rem;
+
           img{
-            width: 2.5rem;
-            height: 2.5rem;
+            width: 2rem;
+            height: 2rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.4rem;
           }
         }
       }
@@ -49,15 +61,66 @@ body{
 // formulario de creacion y edit de animales
 
 .form-create{
-  width: 400px;
+  width: 600px;
   margin: 0 auto;
   margin-top: 1rem;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: #f9f9f9;
-
+  h4{
+    font-size: 1rem;
+    font-family: inherit;
   }
+  .input-row{
+    display: flex;
+    gap: 10px; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .input-colum{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  input, textarea{
+    border-radius: 5px;
+    border: solid 0;
+    padding: 0.3rem ;
+    border: solid 1px rgb(156, 154, 154);
+    &::placeholder{
+      font-size: 1rem;
+      text-align: center;
+      line-height: 30px;
+
+    }
+    &:focus {
+      outline: none;
+      border: 2px solid rgb(153, 153, 158);
+    }
+  }
+
+  button{
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: rgb(65, 118, 231);
+    width: 60%;
+    font-size: 1.5rem;
+    color: white;
+    border-radius: 0.5rem;
+    border: solid 0;
+    cursor: pointer;
+    transition: transform 0.3s;
+
+    &:hover{
+      background-color: rgb(16, 39, 88);
+      transform: translateY(-3px); 
+    }
+  }
+}
 
 
 // formulario de registro y login
@@ -97,10 +160,10 @@ body{
   }
   a{
     text-decoration: none;
-    color: #4c39f8;
+    color: #7a6fd8;
     margin-top: 1.2rem;
     &:hover{
-      color: #7a6fd8;
+      color: #4c39f8;
     }
   }
 
@@ -122,7 +185,78 @@ body{
   }
 }
 
+// contenedor principal de las vistas
 
+.container{
+
+  .card-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 1rem 0 ;
+    .btn-edit {
+      margin-top: 15px;
+      margin: 0;
+      padding: 5px 20px;
+      text-decoration: none;
+      background-color: rgb(19, 230, 82);
+      font-size: 1.5rem;
+      color: white;
+      border-radius: 0.5rem;
+      border: solid 0;
+      cursor: pointer;
+      transition: transform 0.3s;
+    
+      &:hover {
+        background-color: rgb(8, 95, 30);
+        transform: translateY(-3px);
+      }
+    }
+    form{
+      padding: 0;
+      margin: 0;
+      .btn-delete{
+      padding: 5px 10px;
+      margin-left: 2rem;
+      background-color: rgb(235, 13, 13);
+      font-size: 1.5rem;
+      color: white;
+      border-radius: 0.5rem;
+      border: solid 0;
+      cursor: pointer;
+      transition: transform 0.3s;
+    
+      &:hover {
+        background-color: rgb(100, 7, 14);
+        transform: translateY(-3px);
+      }
+
+      }
+
+    }
+
+  }
+
+  .container-no-mascota {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ccc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
 }
 
-  
+.no-hay-mascota {
+    padding: 1.2rem;
+    margin: 0; 
+    font-size: 2.5rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center; 
+}
+
+}
+}

@@ -1,4 +1,4 @@
-<nav class="nav">
+<nav class="menu">
  <ul>
     <li>
         <a href="{{ route('home.index') }}">
@@ -24,6 +24,12 @@
             Info
         </a> 
     </li>
+    <li>
+        <a href="{{ route('user-profile.index') }}">
+           {{-- <img> --}}
+           Perfil
+       </a> 
+   </li>
  </ul>
 
 

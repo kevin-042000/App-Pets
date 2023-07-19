@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Http\Requests\FoundPetRequest;
+use App\Http\Requests\FoundPetRequest;
 use App\Models\FoundPet;
 use Illuminate\View\view;
 use Illuminate\http\RedirectResponse;
@@ -18,18 +18,20 @@ class FoundPetController extends Controller
 
     public function store(FoundPetRequest $request): RedirectResponse
     {
+
         FoundPet::create([
-            'name' => $request->name,
+            'title' => $request->title,
             'description' => $request->description,
             'location' => $request->location,
-            'date_lost' => $request->date_lost
+            'date_found' => $request->date_found
+     
         ]);        
-        return redirect()->route('lost-pets.index');
+        return redirect()->route('found-pets.index');
     }
 
     public function edit(FoundPet $pet): View
     {
-        return view('function.edit', compact('pet'));       
+        return view('Formularios.form-edit-found-pets', compact('pet'));       
     }
 
     public function update(FoundPetRequest $request, FoundPet $pet): RedirectResponse
@@ -43,6 +45,8 @@ class FoundPetController extends Controller
     $pet->delete();
     return redirect()->route('found-pets.index');
     }
+
+    
 }
  
 

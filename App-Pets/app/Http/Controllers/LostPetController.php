@@ -29,7 +29,7 @@ class LostPetController extends Controller
 
     public function edit(LostPet $pet): View
     {
-        return view('function.edit', compact('pet'));       
+        return view('formularios.form-edit-lost-pets', compact('pet'));       
     }
 
     public function update(LostPetRequest $request, LostPet $pet): RedirectResponse

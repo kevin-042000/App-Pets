@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('location');
-            $table->date('date_found');
+            $table->date('date_found')->nullable();
             $table->string('photo')->nullable();
             $table->timestamps();
         });

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\LostPetController;
 use App\Http\Controllers\FoundPetController;
+use App\Http\Controllers\UserProfileController;
 
 // Route de home
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -26,10 +27,16 @@ Route::put('/lost-pets/update/{pet}', [LostPetController::class, 'update'])->nam
 // Route::get('/lost-pets/show/{pet}', [LostPetController::class, 'show'])->name('lost-pets.show');
 Route::delete('/lost-pets/destroy/{pet}', [LostPetController::class, 'destroy'])->name('lost-pets.destroy');
 // Route de Found Pets
-Route::get('/found-pets/register', [FoundPetController::class, 'index'])->name('found-pets.index');
-Route::post('/found-pets', [LostPetController::class, 'store'])->name('found-pets.store');
-Route::get('/found-pets/edit/{pet}', [LostPetController::class, 'edit'])->name('found-pets.edit');
-Route::put('/found-pets/update/{pet}', [LostPetController::class, 'update'])->name('found-pets.update');
-Route::delete('/found-pets/destroy/{pet}', [LostPetController::class, 'destroy'])->name('found-pets.destroy');
+Route::get('/found-pets', [FoundPetController::class, 'index'])->name('found-pets.index');
+Route::post('/found-pets', [FoundPetController::class, 'store'])->name('found-pets.store');
+Route::get('/found-pets/edit/{pet}', [FoundPetController::class, 'edit'])->name('found-pets.edit');
+Route::put('/found-pets/update/{pet}', [FoundPetController::class, 'update'])->name('found-pets.update');
+Route::delete('/found-pets/destroy/{pet}', [FoundPetController::class, 'destroy'])->name('found-pets.destroy');
+
 // Route de Profile User
+Route::get('/user-profile', [UserProfileController::class, 'index'])->name('user-profile.index');
 Route::post('/user-profile', [UserProfileController::class, 'store'])->name('user-profile.store');
+Route::get('/user-profile/edit/{user-profile}', [UserProfileController::class, 'edit'])->name('user-profile.edit');
+Route::put('/user-profile/update/{user-profile}', [UserProfileController::class, 'update'])->name('user-profile.update');
+Route::delete('/user-profile/destroy/{user-profile}', [UserProfileController::class, 'destroy'])->name('user-profile.destroy');
+

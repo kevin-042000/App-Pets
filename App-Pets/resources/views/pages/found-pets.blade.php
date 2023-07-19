@@ -6,32 +6,48 @@
 @include('layouts._partials.nav')
 {{-- Formulario de carga de mascotas encontradas --}}
 <section class="cont-form">
-    @component('components.form-create')
-    @slot('action')
-        {{ route('found-pets.store') }}
-    @endslot
-@endcomponent
+{{-- formulario de subir mascotas encontradas --}}
+@include('formularios.form-create-found-pets')
 </section>
-<section class="contend">
-    <ul>
-        @forelse ($FoundPets as $FoundPet)
-            <li>
-                <h3>{{ $FoundPet->name }}</h3>
-                <p>{{ $FoundPet->description }}</p>
-                <p>{{ $FoundPet->location }}</p>
-                <p>{{ $FoundPet->date_lost }}</p>
-                <a href="{{ route('found-pets.edit', $LostPet->id) }}">Editar</a>
 
-                <form method="POST" action="{{ route('found-pets.destroy', $FoundPet->id) }}" >
-                    @method('DELETE')
-                    @csrf
-                    <input type="submit" value="DELETE">
-                </form>
-            </li>            
-        @empty
-        <p>No hay mascotas encontradas</p>            
-        @endforelse
-    </ul>
+<section class="container">
+    @forelse ($FoundPets as $FoundPet)
+ 
+    <div class="card mt-3">
+        <div class="card-header">
+            <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
+                {{ $FoundPet->title }}
+            </h3>
+        </div>
+
+        <div class="card-body d-flex justify-content-center align-items-center flex-column">
+            <div class="mb-1">
+                <p>{{ $FoundPet->description }}</p>
+            </div>
+            <div class="mb-1">
+                <p>Se encontro en: {{ $FoundPet->location }}</p>
+            </div>
+            <div class="mb-1">
+                <p>Fecha en la que se encontro:  {{ \Carbon\Carbon::parse($FoundPet->date_found)->format('d/m/Y') }}</p>
+            </div>
+        </div>
+
+        <div class="card-footer d-flex justify-content-center align-items-center">
+            <a class="btn-edit" href="{{ route('lost-pets.edit', $FoundPet->id) }}">Editar</a>
+          {{-- <a href="{{ route('lost-pets.show', $LostPet->id) }}">detalle</a> --}}
+          <form method="POST" action="{{ route('found-pets.destroy', $FoundPet->id) }}" >
+            @method('DELETE')
+            @csrf
+            <input class="btn-delete" type="submit" value="Eliminar">
+         </form>
+        </div>     
+    </div>
+
+@empty
+<div class="container-no-mascota">
+<p class="no-hay-mascota">No hay mascotas encontradas</p>   
+</div>         
+@endforelse
 
 </section>
 @endsection
