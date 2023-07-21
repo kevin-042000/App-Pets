@@ -50,7 +50,6 @@
         <p class="no-hay-mascota">No hay mascotas perdidas</p>   
         </div>         
         @endforelse
-  
 
 </section>
 @endsection

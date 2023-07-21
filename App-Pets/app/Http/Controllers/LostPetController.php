@@ -12,7 +12,7 @@ class LostPetController extends Controller
 {
     public function index(): view
     {
-        $LostPets = LostPet::all();
+        $LostPets = LostPet::latest()->get();
         return view('pages.lost-pets', compact('LostPets'));
     }
 
@@ -41,7 +41,7 @@ class LostPetController extends Controller
     public function destroy(LostPet $pet): RedirectResponse
     {
     $pet->delete();
-    return redirect()->route('lost-pets.index');
+    return back();
     }
 }
  
