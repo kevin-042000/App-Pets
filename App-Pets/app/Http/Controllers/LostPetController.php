@@ -7,6 +7,8 @@ use App\Http\Requests\LostPetRequest;
 use App\Models\LostPet;
 use Illuminate\View\view;
 use Illuminate\http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use App\Policies\LostPetPolicy;
 
 class LostPetController extends Controller
 {
@@ -14,11 +16,15 @@ class LostPetController extends Controller
     {
         $LostPets = LostPet::latest()->get();
         return view('pages.lost-pets', compact('LostPets'));
+
     }
 
     public function store(LostPetRequest $request): RedirectResponse
     {
+        $user = Auth::user(); // Obtiene el usuario autenticado
+
         LostPet::create([
+            'user_id' => $user->id, // Asigna el user_id del usuario autenticado
             'name' => $request->name,
             'description' => $request->description,
             'location' => $request->location,

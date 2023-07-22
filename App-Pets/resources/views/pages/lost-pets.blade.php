@@ -34,21 +34,32 @@
                         <p>Fecha en la que se perdio: {{ \Carbon\Carbon::parse($LostPet->date_lost)->format('d/m/Y') }}</p>
                     </div>
                 </div>
+
                 <div class="card-footer d-flex justify-content-center align-items-center">
-                    <a class="btn-edit" href="{{ route('lost-pets.edit', $LostPet->id) }}">Editar</a>
-                  {{-- <a href="{{ route('lost-pets.show', $LostPet->id) }}">detalle</a> --}}
-                  <form  method="POST" action="{{ route('lost-pets.destroy', $LostPet->id) }}" >
-                    @method('DELETE')
-                    @csrf
-                    <input class="btn-delete" type="submit" value="Eliminar">
-                 </form>
-                </div>     
+                    {{-- Verifica si el usuario está autenticado y verificar si el usuario actual
+                    tiene permisos para editar la mascota perdida específica.
+                    si tiene permiso se muestran los botones --}}
+                   
+                    @auth
+                    @if( Auth::user()->id == $LostPet->id)
+                        <a class="btn-edit" href="{{ route('lost-pets.edit', $LostPet->id) }}">Editar</a>
+                        <form method="POST" action="{{ route('lost-pets.destroy', $LostPet->id) }}">
+                            @method('DELETE')
+                            @csrf
+                            <input class="btn-delete" type="submit" value="Eliminar">
+                        </form>
+                    @endif
+                @endauth
+               
+
+                </div>
             </div>
 
+  {{-- Si no hay publicaciones se muestra esto   --}}
         @empty
-        <div class="container-no-mascota">
-        <p class="no-hay-mascota">No hay mascotas perdidas</p>   
-        </div>         
+            <div class="container-no-mascota">
+                <p class="no-hay-mascota">No hay mascotas perdidas</p>   
+            </div>         
         @endforelse
 
 </section>

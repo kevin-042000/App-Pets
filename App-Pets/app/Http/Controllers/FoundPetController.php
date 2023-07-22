@@ -7,19 +7,25 @@ use App\Http\Requests\FoundPetRequest;
 use App\Models\FoundPet;
 use Illuminate\View\view;
 use Illuminate\http\RedirectResponse;
-
+use Illuminate\Support\Facades\Auth;
+ 
 class FoundPetController extends Controller
 {
     public function index(): view
     {
         $FoundPets = FoundPet::latest()->get();
+
+
         return view('pages.found-pets', compact('FoundPets'));
     }
 
     public function store(FoundPetRequest $request): RedirectResponse
     {
 
+        $user = Auth::user(); // Obtiene el usuario autenticado
+        
         FoundPet::create([
+            'user_id' => $user->id, // Asigna el user_id del usuario autenticado
             'title' => $request->title,
             'description' => $request->description,
             'location' => $request->location,

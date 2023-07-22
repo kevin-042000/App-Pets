@@ -33,21 +33,29 @@
         </div>
 
         <div class="card-footer d-flex justify-content-center align-items-center">
-            <a class="btn-edit" href="{{ route('lost-pets.edit', $FoundPet->id) }}">Editar</a>
-          {{-- <a href="{{ route('lost-pets.show', $LostPet->id) }}">detalle</a> --}}
-          <form method="POST" action="{{ route('found-pets.destroy', $FoundPet->id) }}" >
-            @method('DELETE')
-            @csrf
-            <input class="btn-delete" type="submit" value="Eliminar">
-         </form>
-        </div>     
-    </div>
+            {{-- Verifica si el usuario está autenticado y verificar si el usuario actual
+            tiene permisos para editar la mascota perdida específica.
+            si tiene permiso se muestran los botones --}}
 
-@empty
-<div class="container-no-mascota">
-<p class="no-hay-mascota">No hay mascotas encontradas</p>   
-</div>         
-@endforelse
+            @auth
+            @if( Auth::user()->id == $FoundPet->id)
+                <a class="btn-edit" href="{{ route('found-pets.edit', $FoundPet->id) }}">Editar</a>
+                <form method="POST" action="{{ route('found-pets.destroy', $FoundPet->id) }}">
+                    @method('DELETE')
+                    @csrf
+                    <input class="btn-delete" type="submit" value="Eliminar">
+                </form>
+            @endif
+        @endauth
+        
+        </div>
+    </div>
+  {{-- Si no hay publicaciones se muestra esto   --}}
+    @empty
+    <div class="container-no-mascota">
+        <p class="no-hay-mascota">No hay mascotas encontradas</p>   
+    </div>         
+    @endforelse
 
 </section>
 @endsection

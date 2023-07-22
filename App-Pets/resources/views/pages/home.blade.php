@@ -35,14 +35,27 @@
                             {{ \Carbon\Carbon::parse($pet->date_lost ?? $pet->date_found)->format('d/m/Y') }}</p>
                     </div>
                 </div>
+
                 <div class="card-footer d-flex justify-content-center align-items-center">
-                    <a class="btn-edit" href="{{ $pet instanceof App\Models\LostPet ? route('lost-pets.edit', $pet->id) : route('found-pets.edit', $pet->id) }}">Editar</a>
-                    <form method="POST" action="{{ $pet instanceof App\Models\LostPet ? route('lost-pets.destroy', $pet->id) : route('found-pets.destroy', $pet->id) }}">
-                        @method('DELETE')
-                        @csrf
-                        <input class="btn-delete" type="submit" value="Eliminar">
-                    </form>
+            {{-- Verifica si el usuario está autenticado y verificar si el usuario actual
+            tiene permisos para editar la mascota perdida específica.
+            si tiene permiso se muestran los botones --}}
+
+        @auth
+    @if(Auth::user()->id === $pet->user_id)
+        <a class="btn-edit" href="{{ $pet instanceof App\Models\LostPet ? route('lost-pets.edit', $pet->id) : route('found-pets.edit', $pet->id) }}">Editar</a>
+        <form method="POST" action="{{ $pet instanceof App\Models\LostPet ? route('lost-pets.destroy', $pet->id) : route('found-pets.destroy', $pet->id) }}">
+            @method('DELETE')
+            @csrf
+            <input class="btn-delete" type="submit" value="Eliminar">
+        </form>
+    @endif
+@endauth
+        
+        
+                   
                 </div>
+
             </div>
         @endforeach
     @endif

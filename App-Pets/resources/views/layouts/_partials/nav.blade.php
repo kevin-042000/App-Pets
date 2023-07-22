@@ -30,6 +30,15 @@
            Perfil
        </a> 
    </li>
+   <li>
+    @auth
+    <form action="{{ route('login.logout') }}" method="POST">
+        @csrf
+        <button type="submit"> Cerrar sesión de {{ Auth::user()->name }}</button>
+    </form>
+@endauth
+
+   </li>
  </ul>
 
 

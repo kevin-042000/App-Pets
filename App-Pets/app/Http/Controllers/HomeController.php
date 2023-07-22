@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\View\view;
 use App\Models\LostPet;
 use App\Models\FoundPet;
-
+use Illuminate\Support\Facades\Auth;
+ 
 class HomeController extends Controller
 {
     public function index(): view
