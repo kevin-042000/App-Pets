@@ -14,7 +14,7 @@ class LostPetRequest extends FormRequest
         return true;
     }
 
-    /**
+    /** 
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
@@ -23,7 +23,9 @@ class LostPetRequest extends FormRequest
     {
         return [
             'name' => 'required|max:30|min:3',
-            'description' => 'required|max:255|min:3'
+            'description' => 'required|max:255|min:3',
+            'photo' => 'nullable|image|max:2048'
+
         ];
     }
 }

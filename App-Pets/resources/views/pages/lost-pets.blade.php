@@ -17,7 +17,7 @@
 <section class="container">
         @forelse ($LostPets as $LostPet)
  
-            <div class="card mt-3">
+        <div class="card mt-3 mb-3 col-6 mx-auto d-block">
                 <div class="card-header">
                     <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
                       Se perdio {{ $LostPet->name }}
@@ -33,6 +33,13 @@
                     <div class="mb-1">
                         <p>Fecha en la que se perdio: {{ \Carbon\Carbon::parse($LostPet->date_lost)->format('d/m/Y') }}</p>
                     </div>
+
+                    {{-- el if comprueba si existe una img, si existe la muestra --}}
+                    @if ($LostPet->photo && file_exists(public_path('storage/images/'.$LostPet->photo)))
+                        <div class="mb-1">
+                            <img class="card-img" src="{{ asset('storage/images/'.$LostPet->photo) }}" alt="img de la mascota">
+                        </div>
+                   @endif
                 </div>
 
                 <div class="card-footer d-flex justify-content-center align-items-center">
@@ -41,7 +48,7 @@
                     si tiene permiso se muestran los botones --}}
                    
                     @auth
-                    @if( Auth::user()->id == $LostPet->id)
+                    @if( Auth::user()->id == $LostPet->user_id)
                         <a class="btn-edit" href="{{ route('lost-pets.edit', $LostPet->id) }}">Editar</a>
                         <form method="POST" action="{{ route('lost-pets.destroy', $LostPet->id) }}">
                             @method('DELETE')
@@ -50,7 +57,7 @@
                         </form>
                     @endif
                 @endauth
-               
+                
 
                 </div>
             </div>

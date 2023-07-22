@@ -1,4 +1,5 @@
 <nav class="menu">
+    <div class="menu-content">
  <ul>
     <li>
         <a href="{{ route('home.index') }}">
@@ -30,16 +31,18 @@
            Perfil
        </a> 
    </li>
-   <li>
-    @auth
-    <form action="{{ route('login.logout') }}" method="POST">
+ </ul>
+ </div>
+
+
+ @auth
+ <div class="logout-container">
+    <form class="logout-button" action="{{ route('login.logout') }}" method="POST">
         @csrf
         <button type="submit"> Cerrar sesión de {{ Auth::user()->name }}</button>
     </form>
+ </div>
 @endauth
-
-   </li>
- </ul>
 
 
 </nav>

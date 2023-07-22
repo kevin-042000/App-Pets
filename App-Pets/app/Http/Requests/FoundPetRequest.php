@@ -23,7 +23,8 @@ class FoundPetRequest extends FormRequest
     {
         return [
             'title' => 'required|max:30|min:3',
-            'description' => 'required|max:255|min:3'
+            'description' => 'required|max:255|min:3',
+            'photo' => 'nullable|image|max:2048'
         ];
     }
 }

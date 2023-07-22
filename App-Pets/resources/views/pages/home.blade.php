@@ -15,7 +15,7 @@
     @else
         {{-- Mostrar todas las mascotas ordenadas por fecha --}}
         @foreach ($SortedPets as $pet)
-            <div class="card mt-3">
+            <div class="card mt-3 mb-3 col-6 mx-auto d-block">
                 <div class="card-header">
                     <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
                         {{ $pet instanceof App\Models\LostPet ? 'Se perdió' : 'Titulo: ' }}
@@ -34,6 +34,12 @@
                         <p>{{ $pet instanceof App\Models\LostPet ? 'Fecha en la que se perdió:' : 'Fecha en la que se encontró:' }}
                             {{ \Carbon\Carbon::parse($pet->date_lost ?? $pet->date_found)->format('d/m/Y') }}</p>
                     </div>
+                       {{-- el if comprueba si existe una img, si existe la muestra --}}
+                       @if ($pet->photo && file_exists(public_path('storage/images/'.$pet->photo)))
+                       <div class="mb-1">
+                           <img class="card-img" src="{{ asset('storage/images/'.$pet->photo) }}" alt="img de la mascota">
+                       </div>
+                  @endif
                 </div>
 
                 <div class="card-footer d-flex justify-content-center align-items-center">

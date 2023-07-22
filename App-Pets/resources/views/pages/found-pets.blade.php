@@ -13,7 +13,7 @@
 <section class="container">
     @forelse ($FoundPets as $FoundPet)
  
-    <div class="card mt-3">
+    <div class="card mt-3 mb-3 col-6 mx-auto d-block">
         <div class="card-header">
             <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
                 {{ $FoundPet->title }}
@@ -30,6 +30,12 @@
             <div class="mb-1">
                 <p>Fecha en la que se encontro:  {{ \Carbon\Carbon::parse($FoundPet->date_found)->format('d/m/Y') }}</p>
             </div>
+             {{-- el if comprueba si existe una img, si existe la muestra --}}
+             @if ($FoundPet->photo && file_exists(public_path('storage/images/'.$FoundPet->photo)))
+             <div class="mb-1">
+                 <img class="card-img" src="{{ asset('storage/images/'.$FoundPet->photo) }}" alt="img de la mascota">
+             </div>
+        @endif
         </div>
 
         <div class="card-footer d-flex justify-content-center align-items-center">
@@ -38,7 +44,7 @@
             si tiene permiso se muestran los botones --}}
 
             @auth
-            @if( Auth::user()->id == $FoundPet->id)
+            @if( Auth::user()->id == $FoundPet->user_id)
                 <a class="btn-edit" href="{{ route('found-pets.edit', $FoundPet->id) }}">Editar</a>
                 <form method="POST" action="{{ route('found-pets.destroy', $FoundPet->id) }}">
                     @method('DELETE')
