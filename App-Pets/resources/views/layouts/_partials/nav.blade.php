@@ -39,7 +39,7 @@
  <div class="logout-container">
     <form class="logout-button" action="{{ route('login.logout') }}" method="POST">
         @csrf
-        <button type="submit"> Cerrar sesión de {{ Auth::user()->name }}</button>
+        <button class="logout-button" type="submit"> Cerrar sesión de {{ Auth::user()->name }}</button>
     </form>
  </div>
 @endauth

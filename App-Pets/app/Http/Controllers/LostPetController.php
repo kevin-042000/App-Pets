@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class LostPetController extends Controller
 {
     public function index(): view
-    {
+    { 
         $LostPets = LostPet::latest()->get();
         return view('pages.lost-pets', compact('LostPets'));
 

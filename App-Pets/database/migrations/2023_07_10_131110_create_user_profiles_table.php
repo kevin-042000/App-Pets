@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('bio')->nullable();
             $table->date('birthdate')->nullable();
             $table->string('gender')->nullable();
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

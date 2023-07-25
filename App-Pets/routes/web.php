@@ -43,10 +43,10 @@ Route::put('/found-pets/update/{pet}', [FoundPetController::class, 'update'])->n
 Route::delete('/found-pets/destroy/{pet}', [FoundPetController::class, 'destroy'])->name('found-pets.destroy');
 
 // Route de Profile User
-Route::get('/user-profile', [UserProfileController::class, 'index'])->name('user-profile.index');
-Route::post('/user-profile', [UserProfileController::class, 'store'])->name('user-profile.store');
-Route::get('/user-profile/edit/{user-profile}', [UserProfileController::class, 'edit'])->name('user-profile.edit');
-Route::put('/user-profile/update/{user-profile}', [UserProfileController::class, 'update'])->name('user-profile.update');
-Route::delete('/user-profile/destroy/{user-profile}', [UserProfileController::class, 'destroy'])->name('user-profile.destroy');
+Route::get('/profile', [UserProfileController::class, 'index'])->name('user-profile.index');
+Route::post('/profile', [UserProfileController::class, 'store'])->name('user-profile.store');
+Route::get('/profile/{user}/edit', [UserProfileController::class, 'edit'])->name('user-profile.edit');
+Route::put('/profile/{id}', [UserProfileController::class, 'update'])->name('user-profile.update');
+Route::delete('/profile/{id}/destroy', [UserProfileController::class, 'destroy'])->name('user-profile.destroy');
 
 });

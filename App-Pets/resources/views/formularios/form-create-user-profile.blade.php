@@ -8,7 +8,8 @@
     </div>
 
     <div class="input-colum">
-        <textarea name="bio" id="bio" placeholder="Biografia" required></textarea>        
+        <textarea name="bio" id="bio" placeholder="Biografia" required></textarea>
+        <input type="file" name="photo" id="photo" >        
     </div>
     
     <button type="submit">Publicar</button>
