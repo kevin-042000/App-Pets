@@ -45,12 +45,12 @@ public function store(UserProfileRequest $request): RedirectResponse
 
     public function edit(UserProfile $user)
     {
-            return view('formularios.editar', compact('user'));
-        }
+            return view('formularios.form-edit-user-profile', compact('user'));
+    }
     
 
 
-        public function update(UserProfileRequest $request, $id): RedirectResponse
+    public function update(UserProfileRequest $request, $id): RedirectResponse
 {
     $userProfile = UserProfile::findOrFail($id);
     
@@ -77,6 +77,8 @@ public function store(UserProfileRequest $request): RedirectResponse
 
     return redirect()->route('user-profile.index');
 }
+    
+
 public function destroy($id): RedirectResponse
 {
     // Encuentra el perfil del usuario por su id

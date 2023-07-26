@@ -10,7 +10,8 @@
 body{
   // background-color: rgb(243, 159, 34);
   // background-image: url(/resources/imagenes-App-Pets/f16.png);
-  background-color: #1dceb0;
+  background-image: url(/resources/imagenes-App-Pets/f00.jpg);
+  // background-color: #1dceb0;
   // background-repeat: no-repeat;
   // background-size: 100vw;
   z-index: -3;
@@ -100,8 +101,7 @@ body{
 
       }
     }
-
-  }
+  
 
 // formulario de creacion y edit de animales
 
@@ -312,5 +312,87 @@ body{
     text-align: center; 
 }
 
+// perfil de usuario
+.card-profile-user{
+  margin: 1rem auto;
+  width: 50%;
+  background-color: #acaab9;
+  border-radius: 10px;
+  .container-name-user{
+    padding: 5px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .name-user{
+      font-size: 2rem;
+      font-weight: 400;
+      color: white;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+  }
+  .container-img-user{
+    padding: 5px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e9f0e6;
+    img{
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+    }
+
+  }
+  .container-data-user{
+    padding: 5px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(241, 247, 240);
+    .container-bio-user{ 
+      margin: 0 auto;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      word-break: break-all;;
+      max-width: 80%;
+      .bio-title{
+        padding-top: 1rem;
+      }
+      p{
+        font-size: 1rem;
+      }
+     }
+    .container-gender-birthdate{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 1rem;
+      h5{
+        padding-left: 1rem
+      }
+      ul{
+        list-style-type: none;
+        padding-left: 1rem;
+        margin: 0;
+      }
+    }
+
+}
+.container-btn-profile{
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
 }
 
+}
+}
+}

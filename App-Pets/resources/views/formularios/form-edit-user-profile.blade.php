@@ -10,12 +10,12 @@
     
     <h4>Subir datos</h4>
     <div class="input-row">
-        <input type="gender" name="gender" id="gender" placeholder="{{ $user->gender }}" required>
+        <input type="gender" name="gender" id="gender" value="{{ $user->gender }}" required>
         <input type="date" name="birthdate" id="birthdate" required value="{{ $user->birthdate }}">     
     </div>
 
     <div class="input-colum">
-        <textarea name="bio" id="bio" placeholder="{{ $user->bio }}" required></textarea>
+        <textarea name="bio" id="bio" value="{{ $user->bio }}" required></textarea>
         <input type="file" name="photo" id="photo">        
     </div>
     

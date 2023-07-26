@@ -46,11 +46,38 @@ class LostPetController extends Controller
         return view('formularios.form-edit-lost-pets', compact('pet'));       
     }
 
-    public function update(LostPetRequest $request, LostPet $pet): RedirectResponse
-    {
-        $pet->update($request->all());
-        return redirect()->route('lost-pets.index');
+    public function update(LostPetRequest $request, $id): RedirectResponse
+{
+    // Encuentra la mascota por su id
+    $pet = LostPet::find($id);
+
+    // Comprueba si se ha subido un archivo
+    if ($request->hasFile('photo')) {
+        // Si ya hay una foto, la elimina
+        if ($pet->photo) {
+            Storage::delete('public/images/' . $pet->photo);
+        }
+
+        // Sube la nueva foto
+        $fileName = time().'.'.$request->photo->extension();
+        $request->photo->storeAs('public/images', $fileName);
+
+        // Actualiza el campo 'photo' en la base de datos
+        $pet->photo = $fileName;
     }
+
+    // Actualiza los otros campos
+    $pet->name = $request->name;
+    $pet->description = $request->description;
+    $pet->location = $request->location;
+    $pet->date_lost = $request->date_lost;
+    
+    // Guarda los cambios
+    $pet->save();
+
+    return redirect()->route('lost-pets.index');
+}
+
 
     public function destroy(LostPet $pet): RedirectResponse
     {
