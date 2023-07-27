@@ -7,49 +7,47 @@
 
 {{-- Se incluye el formulario de subir datos --}}
 @include('formularios.form-create-user-profile')
- 
+
 <section class="container">
   <div class="card-profile-user">
-
     <div class="container-name-user">
-        <h5 class="name-user">{{ $user->name }}</h5>
+        <h5 class="name-user">{{ $userProfile->user->name }}</h5>
     </div>
 
+    @if($userProfile->photo)
     <div class="container-img-user">
-        @if($user->profile && $user->profile->photo)
-          <img src="{{ asset('storage/images/' . $user->profile->photo) }}" class="card-img-top" alt="User Photo">
-        @endif
+       <img src="{{ asset('storage/images/' . $userProfile->photo) }}" class="card-img-top" alt="User Photo">
    </div>
-   
+   @endif
+
+   @if($userProfile->bio)
       <div class="container-data-user">
         <div class="container-bio-user">
           <p class="bio-title">BIOGRAFIA</p>
         </div>
         <div class="container-bio-user">
-          @if($user->profile && $user->profile->bio)
-          <p>{{ $user->profile->bio }}</p>
-          @endif
+          <p>{{ $userProfile->bio }}</p>
        </div>
+    @endif
 
+    @if($userProfile->gender || $userProfile->birthdate)
        <div class="container-gender-birthdate">
-        @if($user->profile && ($user->profile->gender || $user->profile->birthdate))
         <h5>DATOS PERSONALES</h2>
         <ul>
-          @if($user->profile && $user->profile->birthdate)
+          @if($userProfile->birthdate)
         <li>
-          <p>Nacio el {{ \Carbon\Carbon::parse($user->profile->birthdate)->format('d-m-Y') }}</p>
+          <p>Nacio el {{ \Carbon\Carbon::parse($userProfile->birthdate)->format('d-m-Y') }}</p>
         </li>
         @endif
 
-          @if($user->profile && $user->profile->gender)
+          @if($userProfile->gender)
           <li>
-            <p> El genero de {{ $user->name }} es {{ $user->profile->gender }}</p>
+            <p> El genero de {{ $userProfile->user->name }} es {{ $userProfile->gender }}</p>
           </li>
         @endif
-
-        </ul>
-        @endif      
+        </ul>   
        </div>
+    @endif   
 
       </div>
       
@@ -62,22 +60,26 @@
        
        <div class="container-btn-profile">
         @auth
-        @if($user->id == Auth::user()->id && $user->profile && ($user->profile->bio || $user->profile->birthdate || $user->profile->gender || $user->profile->photo))
-            <a class="btn-edit" href="{{ route('user-profile.edit', $user->id) }}">Editar</a>
-            <form method="POST" action="{{ route('user-profile.destroy', $user->id) }}">
+        @if($userProfile->user->id == Auth::user()->id)
+            <a class="btn-edit" href="{{ route('user-profile.edit', $userProfile->user->id) }}">
+              {{-- <img src="{{ asset('icons-App-Pets/pluma.png') }}" alt="Icono de editar"> --}}
+              EDITAR
+            </a>
+            <form method="POST" action="{{ route('user-profile.destroy', $userProfile->user->id) }}">
                 @method('DELETE')
                 @csrf
-                <input class="btn-delete" type="submit" value="Eliminar">
+                <button class="btn-delete" type="submit">
+                  ELIMINAR
+                  {{-- <img src="{{ asset('icons-App-Pets/compartimiento.png') }}" alt="Icono de editar"> --}}
+                </button>
             </form>
         @endif
     @endauth
   </div>
+</section>
+
 
       
-     
-  </div>
-   
-</section>
 
 
   

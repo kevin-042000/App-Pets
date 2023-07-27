@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserProfileRequest;
 use App\Models\UserProfile;
 use App\Models\User;
 use Illuminate\View\view;
 use Illuminate\http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class UserProfileController extends Controller
 {
-    public function index()
-{
-    $user = Auth::user();
-    return view('pages.user-profile', compact('user'));
-}
+//     public function index()
+// {
+//     $user = Auth::user();
+//     return view('pages.user-profile', compact('user'));
+// }
 
 public function store(UserProfileRequest $request): RedirectResponse
 {
@@ -40,8 +41,9 @@ public function store(UserProfileRequest $request): RedirectResponse
 
     $userProfile->save();
 
-    return redirect()->route('user-profile.index');
+    return redirect()->route('user-profile.showOwnProfile');
 }
+
 
     public function edit(UserProfile $user)
     {
@@ -75,11 +77,51 @@ public function store(UserProfileRequest $request): RedirectResponse
     
     $userProfile->save();
 
-    return redirect()->route('user-profile.index');
+    return redirect()->route('user-profile.showOwnProfile');
 }
-    
 
-public function destroy($id): RedirectResponse
+
+// public function show(User $user)
+// {
+//     // Obtener el perfil del usuario por su id
+//     $userProfile = UserProfile::where('user_id', $user->id)->first();
+
+//     // Si no existe el perfil, redirigir a una página de error o a donde prefieras
+//     if (!$userProfile) {
+//         return redirect()->route('home.index');
+//     }
+
+//     // Si el usuario autenticado es el mismo que el del perfil o no
+//     $isSameUser = Auth::user() ? Auth::user()->id == $user->id : false;
+
+//     // Si es el mismo, redirigir al perfil del usuario, si no, redirigir a la vista del perfil del otro usuario
+//     $viewName = $isSameUser ? 'pages.user-profile' : 'pages.user-profile-show';
+
+//     return view($viewName, compact('userProfile'));
+// }
+
+public function showOwnProfile()
+{
+    $userId = Auth::id();
+    $userProfile = UserProfile::where('user_id', $userId)->first();
+
+    return view('pages.user-profile', compact('userProfile'));
+}
+
+public function showOtherUserProfile(User $user)
+{
+    $userProfile = UserProfile::where('user_id', $user->id)->first();
+
+    if (!$userProfile) {
+        return redirect()->route('home.index');
+    }
+
+    return view('pages.user-profile-show', compact('userProfile'));
+}
+
+
+
+    public function destroy($id): RedirectResponse
 {
     // Encuentra el perfil del usuario por su id
     $userProfile = UserProfile::findOrFail($id);

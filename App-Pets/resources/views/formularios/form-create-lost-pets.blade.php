@@ -9,11 +9,16 @@
     </div>
 
     <div class="input-colum">
-        <input type="date" name="date_lost" id="date_lost" required>
         <textarea name="description" id="description" placeholder="Description" required></textarea>        
-        <input type="file" name="photo" id="photo">
     </div>
+
+    <div class="input-row">
+        <input type="date" name="date_lost" id="date_lost" required>
+        <input type="file" name="photo" id="photo">
+    </div> 
     
-    <button type="submit">Publicar</button>
+    <div class="btn-form-edit">
+    <button class="button" type="submit">Publicar</button>
+    </div>
 </form>
 

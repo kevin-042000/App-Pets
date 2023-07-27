@@ -43,9 +43,12 @@ Route::put('/found-pets/update/{pet}', [FoundPetController::class, 'update'])->n
 Route::delete('/found-pets/destroy/{pet}', [FoundPetController::class, 'destroy'])->name('found-pets.destroy');
 
 // Route de Profile User
-Route::get('/profile', [UserProfileController::class, 'index'])->name('user-profile.index');
+// Route::get('/profile', [UserProfileController::class, 'index'])->name('user-profile.index');
 Route::post('/profile', [UserProfileController::class, 'store'])->name('user-profile.store');
-Route::get('/profile/{user}/edit', [UserProfileController::class, 'edit'])->name('user-profile.edit');
+// Route::get('/user-profile/{id}', [UserProfileController::class, 'show'])->name('user-profile.show');
+Route::get('/profile', [UserProfileController::class, 'showOwnProfile'])->name('user-profile.showOwn');
+Route::get('/user-profile/{user}', [UserProfileController::class, 'showOtherUserProfile'])->name('user-profile.showOthers');
+Route::get('/profile/{id}/edit', [UserProfileController::class, 'edit'])->name('user-profile.edit');
 Route::put('/profile/{id}', [UserProfileController::class, 'update'])->name('user-profile.update');
 Route::delete('/profile/{id}/destroy', [UserProfileController::class, 'destroy'])->name('user-profile.destroy');
 

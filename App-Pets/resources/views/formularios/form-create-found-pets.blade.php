@@ -8,10 +8,15 @@
     </div>
 
     <div class="input-colum">
-        <input type="date" name="date_found" id="date_found" required >
         <textarea name="description" id="description" placeholder="Description" required></textarea>        
+    </div>
+
+    <div class="input-row">
+        <input type="date" name="date_found" id="date_found" required >
         <input type="file" name="photo" id="photo">
     </div>
      
-    <button type="submit">Publicar</button>
+    <div class="btn-form-edit">
+    <button class="button" type="submit">Publicar</button>
+    </div>
 </form>

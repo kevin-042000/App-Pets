@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <link rel="icon" type="image/png" href="{{ asset('icons-App-Pets/f24.jpg') }}">
+    
     @vite(['resources/css/app.scss'])
 
 </head>

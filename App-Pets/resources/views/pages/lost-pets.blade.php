@@ -18,12 +18,23 @@
         @forelse ($LostPets as $LostPet)
  
         <div class="card mt-3 mb-3 col-6 mx-auto d-block">
-                <div class="card-header">
-                    <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
-                      Se perdio {{ $LostPet->name }}
-                    </h3>
+            <div class="card-header">
+                <div class="user-info d-flex align-items-center">
+                    <a href="{{ route('user-profile.showOwn', $LostPet->user->id) }}">
+                        @if($LostPet->user->profile && $LostPet->user->profile->photo)
+                            <img src="{{ asset('storage/images/' . $LostPet->user->profile->photo) }}" alt="Foto de perfil de usuario">
+                        @endif
+                        {{ $LostPet->user->name }}
+                    </a>
                 </div>
+            </div>
+
                 <div class="card-body d-flex justify-content-center align-items-center flex-column">
+                    <div class="container-h3">
+                        <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
+                            Se perdio {{ $LostPet->name }}
+                        </h3>
+                    </div>
                     <div class="mb-1">
                         <p>{{ $LostPet->description }}</p>
                     </div>
@@ -57,7 +68,6 @@
                         </form>
                     @endif
                 @endauth
-                
 
                 </div>
             </div>

@@ -6,6 +6,7 @@
 @include('layouts._partials.nav')
 
 {{-- Aqui se empieza a ver los datos de animales peridos --}}
+@section('content')
 <section class="container">
     {{-- Mensaje por si no hay publiciones --}}
     @if ($message)
@@ -17,6 +18,14 @@
         @foreach ($SortedPets as $pet)
             <div class="card mt-3 mb-3 col-6 mx-auto d-block">
                 <div class="card-header">
+                    <div class="user-info d-flex align-items-center">
+                        <a href="{{ route('user-profile.showOwn', $pet->user->id) }}">
+                            @if($pet->user->profile && $pet->user->profile->photo)
+                                <img src="{{ asset('storage/images/' . $pet->user->profile->photo) }}" alt="Foto de perfil de usuario">
+                            @endif
+                            {{ $pet->user->name }}
+                        </a>
+                    </div>
                     <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
                         {{ $pet instanceof App\Models\LostPet ? 'Se perdió' : 'Titulo: ' }}
                         {{ $pet->name ?? $pet->title }}
@@ -34,39 +43,31 @@
                         <p>{{ $pet instanceof App\Models\LostPet ? 'Fecha en la que se perdió:' : 'Fecha en la que se encontró:' }}
                             {{ \Carbon\Carbon::parse($pet->date_lost ?? $pet->date_found)->format('d/m/Y') }}</p>
                     </div>
-                       {{-- el if comprueba si existe una img, si existe la muestra --}}
-                       @if ($pet->photo && file_exists(public_path('storage/images/'.$pet->photo)))
-                       <div class="mb-1">
-                           <img class="card-img" src="{{ asset('storage/images/'.$pet->photo) }}" alt="img de la mascota">
-                       </div>
-                  @endif
+                    {{-- el if comprueba si existe una img, si existe la muestra --}}
+                    @if ($pet->photo && file_exists(public_path('storage/images/'.$pet->photo)))
+                        <div class="mb-1">
+                            <img class="card-img" src="{{ asset('storage/images/'.$pet->photo) }}" alt="img de la mascota">
+                        </div>
+                    @endif
                 </div>
 
                 <div class="card-footer d-flex justify-content-center align-items-center">
-            {{-- Verifica si el usuario está autenticado y verificar si el usuario actual
-            tiene permisos para editar la mascota perdida específica.
-            si tiene permiso se muestran los botones --}}
-
-        @auth
-    @if(Auth::user()->id === $pet->user_id)
-        <a class="btn-edit" href="{{ $pet instanceof App\Models\LostPet ? route('lost-pets.edit', $pet->id) : route('found-pets.edit', $pet->id) }}">Editar</a>
-        <form method="POST" action="{{ $pet instanceof App\Models\LostPet ? route('lost-pets.destroy', $pet->id) : route('found-pets.destroy', $pet->id) }}">
-            @method('DELETE')
-            @csrf
-            <input class="btn-delete" type="submit" value="Eliminar">
-        </form>
-    @endif
-@endauth
-        
-        
-                   
+                    {{-- Verifica si el usuario está autenticado y verificar si el usuario actual
+                    tiene permisos para editar la mascota perdida específica.
+                    si tiene permiso se muestran los botones --}}
+                    @auth
+                        @if(Auth::user()->id === $pet->user_id)
+                            <a class="btn-edit" href="{{ $pet instanceof App\Models\LostPet ? route('lost-pets.edit', $pet->id) : route('found-pets.edit', $pet->id) }}">Editar</a>
+                            <form method="POST" action="{{ $pet instanceof App\Models\LostPet ? route('lost-pets.destroy', $pet->id) : route('found-pets.destroy', $pet->id) }}">
+                                @method('DELETE')
+                                @csrf
+                                <input class="btn-delete" type="submit" value="Eliminar">
+                            </form>
+                        @endif
+                    @endauth
                 </div>
-
             </div>
         @endforeach
     @endif
 </section>
-
-
-
 @endsection

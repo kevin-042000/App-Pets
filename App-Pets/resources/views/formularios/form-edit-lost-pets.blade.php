@@ -14,13 +14,19 @@
     </div>
 
     <div class="input-colum">
-        <input type="date" name="date_lost" id="date_lost" required value="{{ $pet->date_lost }}">
         <textarea name="description" id="description" required>{{ $pet->description }}</textarea>        
-        <input type="file" name="photo" id="photo">
     </div>
-        
-    <button type="submit">Guardar</button>
-    <a class="button" href="{{ route('lost-pets.index') }}">Cancelar</a>
+
+    <div class="input-row">
+        <input type="date" name="date_lost" id="date_lost" required value="{{ $pet->date_lost }}">
+        <input class="file" type="file" name="photo" id="photo">
+    </div>
+    
+    <div class="btn-form-edit">
+        <a class="button" href="{{ route('lost-pets.index') }}">Cancelar</a>
+        <button class="button" type="submit">Guardar</button>
+    </div>
+   
 </form>
 
 

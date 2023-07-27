@@ -26,11 +26,14 @@
         </a> 
     </li>
     <li>
-        <a href="{{ route('user-profile.index') }}" class="profile-link">
+        <a href="{{ route('user-profile.showOwn') }}" class="profile-link">
            {{-- comprueba si existe una foto de perfil y si existe la muestra --}}
-        @if(Auth::user()->profile && Auth::user()->profile->photo)
+        {{-- @if(Auth::user()->profile && Auth::user()->profile->photo)
         <img src="{{ asset('storage/images/' . Auth::user()->profile->photo) }}" alt="User Photo" class="user-photo">
-        @endif
+        @endif --}}
+        @if(Auth::check() && Auth::user()->profile && Auth::user()->profile->photo)
+    <img src="{{ asset('storage/images/' . Auth::user()->profile->photo) }}" alt="User Photo" class="user-photo">
+@endif
         <span>Perfil</span>
        </a> 
    </li>

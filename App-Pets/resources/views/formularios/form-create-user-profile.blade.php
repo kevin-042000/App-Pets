@@ -11,6 +11,8 @@
         <textarea name="bio" id="bio" placeholder="Biografia" required></textarea>
         <input type="file" name="photo" id="photo" >        
     </div>
-    
-    <button type="submit">Publicar</button>
+
+    <div class="btn-form-edit">
+    <button class="button" type="submit">Publicar</button>
+    </div>
 </form>

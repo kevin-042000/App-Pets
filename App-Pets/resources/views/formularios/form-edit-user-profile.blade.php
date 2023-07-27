@@ -18,8 +18,12 @@
         <textarea name="bio" id="bio" value="{{ $user->bio }}" required></textarea>
         <input type="file" name="photo" id="photo">        
     </div>
-    
-    <button type="submit">Guardar</button>
+
+
+    <div class="btn-form-edit">
+        <a class="button" href="{{ route('user-profile.index') }}">Cancelar</a>
+        <button class="button" type="submit">Guardar</button>
+    </div>
 </form>
 
 @endsection
