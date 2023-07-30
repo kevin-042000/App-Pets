@@ -12,11 +12,10 @@ use Illuminate\Support\Facades\Storage;
  
 class FoundPetController extends Controller
 {
-    public function index(): view
+    public function index(): View
     {
-        $FoundPets = FoundPet::latest()->get();
-
-
+        $FoundPets = FoundPet::with('foundPetComments')->latest()->get();
+    
         return view('pages.found-pets', compact('FoundPets'));
     }
 

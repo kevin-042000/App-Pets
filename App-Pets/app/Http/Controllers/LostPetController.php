@@ -9,14 +9,14 @@ use Illuminate\View\view;
 use Illuminate\http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\LostPetComment; 
 
 class LostPetController extends Controller
 {
-    public function index(): view
+    public function index(): View
     { 
-        $LostPets = LostPet::latest()->get();
+        $LostPets = LostPet::with('lostPetComments')->latest()->get();
         return view('pages.lost-pets', compact('LostPets'));
-
     }
 
     public function store(LostPetRequest $request): RedirectResponse

@@ -6,14 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\View\view;
 use App\Models\LostPet;
 use App\Models\FoundPet;
+use App\Models\LostPetComment; 
+use App\Models\FoundPetComment;
 use Illuminate\Support\Facades\Auth;
  
 class HomeController extends Controller
 {
     public function index(): view
     {
-        $LostPets = LostPet::latest()->get();
-        $FoundPets = FoundPet::latest()->get();
+        $LostPets = LostPet::with('lostPetComments')->latest()->get();
+        $FoundPets = FoundPet::with('foundPetComments')->latest()->get();
 
         // Combinar las colecciones de Lost Pets y Found Pets en una sola
         $AllPets = $LostPets->toBase()->merge($FoundPets);
@@ -29,5 +31,6 @@ class HomeController extends Controller
         }
 
         return view('pages.home', compact('SortedPets', 'message'));
+    }
 }
-}
+

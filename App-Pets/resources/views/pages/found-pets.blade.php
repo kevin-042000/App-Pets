@@ -64,6 +64,22 @@
                 @endauth
             </div>
         </div>
+
+        <div class="comentario">
+            @include('formularios.create-comment-found-pet') 
+       
+        
+            <h3>Comentarios:</h3>
+            @if($FoundPet->foundPetComments)
+            @foreach($FoundPet->foundPetComments as $comment)
+                <div class="comment">
+                    <p>{{ $comment->body }}</p>
+                    <small>Comentado por: {{ $comment->user->name }}</small>
+                </div>
+            @endforeach
+        @endif
+        </div>
+        
     @empty
         <div class="container-no-mascota">
             <p class="no-hay-mascota">No hay mascotas encontradas</p>   

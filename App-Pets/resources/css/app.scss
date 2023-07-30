@@ -22,8 +22,9 @@ body{
     height: 5rem;
     background-color: #4e3cf0;
     // background-color: rgb(196, 66, 5);
-    background: linear-gradient(to right, red, yellow);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+    // background: linear-gradient(to right, red, yellow);
+    background: linear-gradient(to right, rgb(163, 173, 164), rgb(30, 21, 156));
+    box-shadow: 0px 2px 4px rgba(32, 212, 8, 0.4);
     .menu-content{
       width: calc(100% - 150px); // Ajusta este valor dependiendo del ancho que necesita el botón de cierre de sesión.
       margin: 0 auto;
@@ -478,4 +479,9 @@ body{
 
 }
 }
+
+.comentario{
+  background-color: white;
+}
+
 }

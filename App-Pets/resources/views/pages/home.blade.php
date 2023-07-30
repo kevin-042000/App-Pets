@@ -26,12 +26,14 @@
                             {{ $pet->user->name }}
                         </a>
                     </div>
+                </div>
+                <div class="card-body d-flex justify-content-center align-items-center flex-column">
+                    <div class="container-h3">
                     <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
                         {{ $pet instanceof App\Models\LostPet ? 'Se perdió' : 'Titulo: ' }}
                         {{ $pet->name ?? $pet->title }}
                     </h3>
-                </div>
-                <div class="card-body d-flex justify-content-center align-items-center flex-column">
+                    </div>
                     <div class="mb-1">
                         <p>{{ $pet->description }}</p>
                     </div>
@@ -66,8 +68,39 @@
                         @endif
                     @endauth
                 </div>
+            
+            <!-- Mostrar detalles de la publicación aquí -->
+            <div class="comentario">
+                @if(get_class($pet) === 'App\Models\LostPet')
+                    @include('formularios.create-comment-lost-pets') 
+        
+                    @if($pet->lostPetComments->isNotEmpty())
+                        <h3>Comentarios:</h3>
+                        @foreach($pet->lostPetComments as $comment)
+                            <div class="comment">
+                                <p>{{ $comment->body }}</p>
+                                <small>Comentado por: {{ $comment->user->name }}</small>
+                            </div>
+                        @endforeach
+                    @endif
+                @elseif(get_class($pet) === 'App\Models\FoundPet')
+                    @include('formularios.create-comment-found-pet') 
+        
+                    @if($pet->foundPetComments->isNotEmpty())
+                        <h3>Comentarios:</h3>
+                        @foreach($pet->foundPetComments as $comment)
+                            <div class="comment">
+                                <p>{{ $comment->body }}</p>
+                                <small>Comentado por: {{ $comment->user->name }}</small>
+                            </div>
+                        @endforeach
+                    @endif
+                @endif
             </div>
+        </div> <!-- Final del card -->
         @endforeach
+       
     @endif
 </section>
 @endsection
+

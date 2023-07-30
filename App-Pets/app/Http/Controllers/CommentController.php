@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Http\Requests\CommentRequest;
+use App\Models\LostPetComment; 
+use App\Models\FoundPetComment;
+use Illuminate\Support\Facades\Auth;
+
+class CommentController extends Controller
+{
+    public function storeLostPetComment(CommentRequest $request, $lost_pet_id)
+    {
+        $comment = new LostPetComment; 
+        $comment->body = $request->body;
+        $comment->user_id = Auth::id();
+        $comment->lost_pet_id = $lost_pet_id;
+        $comment->save();
+        
+        return redirect()->route('lost-pets.index'); 
+    }
+
+    
+    public function storeFoundPetComment(CommentRequest $request, $found_pet_id)
+    {
+        $comment = new FoundPetComment;
+        $comment->body = $request->body;
+        $comment->user_id = Auth::id();
+        $comment->found_pet_id = $found_pet_id;
+        $comment->save();
+    
+        return redirect()->route('found-pets.index');
+    }
+}
