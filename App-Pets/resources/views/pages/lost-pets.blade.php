@@ -17,7 +17,7 @@
     {{-- Aqui se empieza a ver los datos de animales peridos --}}
     <section class="container">
         @forelse ($LostPets as $LostPet)
-            <div class="card mt-3 mb-3 col-6 mx-auto d-block">
+            <div class="card mt-3  col-6 mx-auto d-block">
                 <div class="card-header">
                     <div class="user-info d-flex align-items-center">
                         <a href="{{ route('user-profile.showOwn', $LostPet->user->id) }}">
@@ -52,14 +52,9 @@
                         </div>
                     @endif
 
-    
                     </div>
-                </div>
-
+                    
                 <div class="card-footer d-flex justify-content-center align-items-center">
-
-
-
                     {{-- Verifica si el usuario está autenticado y verificar si el usuario actual
                     tiene permisos para editar la mascota perdida específica.
                     si tiene permiso se muestran los botones --}}
@@ -73,28 +68,37 @@
                                 <input class="btn-delete" type="submit" value="Eliminar">
                             </form>
                         @endif
-                    @endauth
+                    @endauth    
+                </div>
                 </div>
 
 
-                <div class="comentario">
+
+                <div class="containter-comentarios">
                     @include('formularios.create-comment-lost-pets') 
-               
-                
-                    <h3>Comentarios:</h3>
-                    @if($LostPet->lostPetComments)
-    @foreach($LostPet->lostPetComments as $comment)
-        <div class="comment">
-            <p>{{ $comment->body }}</p>
-            <small>Comentado por: {{ $comment->user->name }}</small>
-        </div>
-    @endforeach
-@endif
-                </div>
 
+                    <div class="comentario">
+                    <div class="title-comment">
+                    <h3>Comentarios</h3>
+                    </div>
+
+                    @if($LostPet->lostPetComments)
+                    @foreach($LostPet->lostPetComments as $comment)
+                    <div class="comment">
+                        <small>
+                            @if($comment->user->profile && $comment->user->profile->photo)
+                                <img src="{{ asset('storage/images/' . $comment->user->profile->photo) }}" alt="User Photo" class="user-photo">
+                            @endif 
+                            {{ $comment->user->name }}
+                        </small>
+                        <p>{{ $comment->body }}</p>
+                    </div>
+                    @endforeach
+                    @endif
+                </div>
               
 
-
+           
                 
         @empty
             <div class="container-no-mascota">

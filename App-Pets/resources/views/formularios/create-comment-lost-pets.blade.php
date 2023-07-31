@@ -2,8 +2,7 @@
     @csrf
 
     <div class="form-group">
-        <label for="body">Comentario</label>
-        <textarea class="form-control" id="body" name="body" rows="3"></textarea>
+        <textarea class="form-control" id="body" name="body" rows="3" placeholder="Realiza un comenario"></textarea>
     </div>
 
     <button type="submit" class="btn btn-primary">Publicar comentario</button>
