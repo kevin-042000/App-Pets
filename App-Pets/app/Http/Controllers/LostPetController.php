@@ -16,8 +16,10 @@ class LostPetController extends Controller
     public function index(): View
     { 
         $LostPets = LostPet::with('lostPetComments')->latest()->get();
-        return view('pages.lost-pets', compact('LostPets'));
+        $type = 'lost';
+        return view('pages.lost-pets', compact('LostPets', 'type'));
     }
+    
 
     public function store(LostPetRequest $request): RedirectResponse
     {

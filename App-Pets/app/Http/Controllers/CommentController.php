@@ -32,4 +32,21 @@ class CommentController extends Controller
     
         return redirect()->route('found-pets.index');
     }
+
+    public function destroy($type, $id)
+    {
+        // Identificamos si viene de FoundPet o LostPet
+        if ($type === 'found') {
+            $comment = FoundPetComment::findOrFail($id);
+        } else {
+            $comment = LostPetComment::findOrFail($id);
+        }
+
+        // Verificamos si el usuario autenticado es el dueño del comentario
+        if (auth()->user()->id === $comment->user_id) {
+            $comment->delete();
+        }
+
+        return redirect()->back();
+    }
 }

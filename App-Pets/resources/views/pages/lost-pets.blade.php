@@ -84,15 +84,27 @@
 
                     @if($LostPet->lostPetComments)
                     @foreach($LostPet->lostPetComments as $comment)
-                    <div class="comment">
+                    
+                        <div class="comment">
                         <small>
                             @if($comment->user->profile && $comment->user->profile->photo)
                                 <img src="{{ asset('storage/images/' . $comment->user->profile->photo) }}" alt="User Photo" class="user-photo">
                             @endif 
                             {{ $comment->user->name }}
                         </small>
-                        <p>{{ $comment->body }}</p>
-                    </div>
+                        <div class="paraffo-destroy">
+                            <p class="paragraph">{{ $comment->body }}</p>
+                            <div class="comment-destroy">
+                                <form method="POST" action="{{ route('comments.destroy', ['type' => $type, 'comment' => $comment->id]) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"><i class="bi bi-trash-fill"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        </div>
+                    
+
                     @endforeach
                     @endif
                 </div>

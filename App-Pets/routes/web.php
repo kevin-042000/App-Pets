@@ -54,7 +54,7 @@ Route::delete('/profile/{id}/destroy', [UserProfileController::class, 'destroy']
 //Route de comentarios
 Route::post('lost-pets/{lost_pet_id}/comment', [CommentController::class, 'storeLostPetComment'])->name('comments.storeLostPet');
 Route::post('found-pets/{found_pet_id}/comment', [CommentController::class, 'storeFoundPetComment'])->name('comments.storeFoundPet');
-Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+Route::delete('/comments/{type}/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 
 }); 
