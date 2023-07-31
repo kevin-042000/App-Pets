@@ -9,43 +9,43 @@
     {{-- Menu de navegacion --}}
     @include('layouts._partials.nav')
 
-    {{-- inicio modal --}}
+  
+
+
+    {{-- Aqui se empieza a ver los datos de animales peridos --}}
+    <section class="container">
+
+          {{-- inicio modal  para mostrar formulario--}}
 
  <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formulario-mascota-perdida">
+ <div class="container-boton-modal">
+<button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#formulario-mascota-perdida">
     Cargar una mascota perdida
 </button>
+ </div>
   
 <!-- Modal -->
 <div class="modal fade" id="formulario-mascota-perdida" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Cargar mascotas</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                     {{-- formulario de subir mascotas perdidas --}}
                     @include('formularios.form-create-lost-pets')
             </div>
-            {{-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div> --}}
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
         </div>
     </div>
 </div>
 
-
     {{-- fin modal --}}
 
-    <section class="cont-form">
-        {{-- formulario de subir mascotas perdidas --}}
-        {{-- @include('formularios.form-create-lost-pets') --}}
-    </section>
 
-    {{-- Aqui se empieza a ver los datos de animales peridos --}}
-    <section class="container">
         @forelse ($LostPets as $LostPet)
             <div class="card mt-3  col-6 mx-auto d-block">
                 <div class="card-header">
@@ -100,27 +100,28 @@
                         @endif
                     @endauth    
                 </div>
-                </div>
+            </div>
 
                 <div class="containter-comentarios">
                     @include('formularios.create-comment-lost-pets') 
 
+                    @if($LostPet->lostPetComments->isNotEmpty())
                     <div class="comentario">
-                    <div class="title-comment">
-                    <h3>Comentarios</h3>
-                    </div>
+                        <div class="title-comment">
+                            <h3>Comentarios</h3>
+                        </div>
 
-                    @if($LostPet->lostPetComments)
-                    @foreach($LostPet->lostPetComments as $comment)
+                       @if($LostPet->lostPetComments)
+                       @foreach($LostPet->lostPetComments as $comment)
                     
                         <div class="comment">
-                        <small>
+                            <small>
                             @if($comment->user->profile && $comment->user->profile->photo)
                                 <img src="{{ asset('storage/images/' . $comment->user->profile->photo) }}" alt="User Photo" class="user-photo">
                             @endif 
                             {{ $comment->user->name }}
-                        </small>
-                        <div class="paraffo-destroy">
+                            </small>
+                            <div class="paraffo-destroy">
                             <p class="paragraph">{{ $comment->body }}</p>
                             <div class="comment-destroy">
                                 <form method="POST" action="{{ route('comments.destroy', ['type' => $type, 'comment' => $comment->id]) }}">
@@ -129,13 +130,16 @@
                                     <button type="submit"><i class="bi bi-trash-fill"></i></button>
                                 </form>
                             </div>
-                        </div>
+                            </div>
                         </div>
                     
 
-                    @endforeach
+                       @endforeach
+                       @endif
+                    </div>
+
                     @endif
-                </div>
+            </div>
               
 
 

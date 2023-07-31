@@ -2,7 +2,6 @@
 
     @csrf
     
-    <h4>Publica una mascota perdida</h4>
     <div class="input-row">
         <input type="text" name="name" id="name" placeholder="Nombre de  Mascota" required>
         <input type="text" name="location" placeholder="Ubicacion" id="location">
