@@ -15,7 +15,7 @@
     {{-- Aqui se empieza a ver los datos de animales peridos --}}
     <section class="container">
 
-          {{-- inicio modal  para mostrar formulario--}}
+{{-- inicio modal para mostrar formulario--}}
 
  <!-- Button trigger modal -->
  <div class="container-boton-modal">
@@ -24,26 +24,9 @@
 </button>
  </div>
   
-<!-- Modal -->
-<div class="modal fade" id="formulario-mascota-perdida" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cargar mascotas</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                    {{-- formulario de subir mascotas perdidas --}}
-                    @include('formularios.form-create-lost-pets')
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-    {{-- fin modal --}}
+<!-- Modal  -->
+@include('components.modal-create-lost-pets')
+{{-- fin modal --}}
 
 
         @forelse ($LostPets as $LostPet)
@@ -57,6 +40,35 @@
                             {{ $LostPet->user->name }}
                         </a>
                     </div>
+
+                    {{-- icono de tres puntos mas menu que muestra el icono --}}
+
+                    {{-- Verifica si el usuario está autenticado y verificar si el usuario actual
+                    tiene permisos para editar la mascota perdida específica.
+                    si tiene permiso se muestran los botones --}}
+
+                    @auth
+                        @if( Auth::user()->id == $LostPet->user_id)
+                        <div class="btn-group dropend">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item"  href="{{ route('lost-pets.edit', $LostPet->id) }}">Editar</a></li>
+                                <li>
+                                    <form method="POST" action="{{ route('lost-pets.destroy', $LostPet->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="dropdown-item">Eliminar</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                          @endif
+                          @endauth    
+                     
+                      
+                    {{-- fin del icono y su menu --}}
                 </div>
 
                 <div class="card-body d-flex justify-content-center align-items-center flex-column">
@@ -85,27 +97,47 @@
                     </div>
                     
                 <div class="card-footer d-flex justify-content-center align-items-center">
-                    {{-- Verifica si el usuario está autenticado y verificar si el usuario actual
-                    tiene permisos para editar la mascota perdida específica.
-                    si tiene permiso se muestran los botones --}}
-                   
-                    @auth
-                        @if( Auth::user()->id == $LostPet->user_id)
-                            <a class="btn-edit" href="{{ route('lost-pets.edit', $LostPet->id) }}">Editar</a>
-                            <form method="POST" action="{{ route('lost-pets.destroy', $LostPet->id) }}">
-                                @method('DELETE')
-                                @csrf
-                                <input class="btn-delete" type="submit" value="Eliminar">
-                            </form>
-                        @endif
-                    @endauth    
+                    <div class="container-acciones-users">
+                        {{-- boton para el modal de cometario --}}
+                        <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#formulario-comment-lost-pets">
+                            Comentar
+                        </button>
+                        {{-- incluir el modal --}}
+                        @include('components.modal-create-comment-lost-pets') 
+
+                        <div class="compartir">
+                            <div class="btn-group dropend">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Compartir
+                                </button>
+                                <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                                    <li>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" target="_blank" >
+                                            <i class="bi bi-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a href="https://api.whatsapp.com/send?text={{ urlencode('Echa un vistazo a esto: ' . request()->fullUrl()) }}" target="_blank" >
+                                            <i class="bi bi-whatsapp"></i>
+                                        </a>                                                                                  
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->fullUrl()) }}&text={{ urlencode('Echa un vistazo a esto:') }}" target="_blank">
+                                            <i class="bi bi-twitter"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                         </div>
                 </div>
             </div>
 
-                <div class="containter-comentarios">
-                    @include('formularios.create-comment-lost-pets') 
 
-                    @if($LostPet->lostPetComments->isNotEmpty())
+            @if($LostPet->lostPetComments->isNotEmpty())
+                <div class="containter-comentarios">
                     <div class="comentario">
                         <div class="title-comment">
                             <h3>Comentarios</h3>
@@ -137,9 +169,8 @@
                        @endforeach
                        @endif
                     </div>
-
-                    @endif
             </div>
+            @endif
               
 
 

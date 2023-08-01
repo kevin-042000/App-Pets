@@ -10,11 +10,9 @@
 
 body{
   background-image: url(/resources/imagenes-App-Pets/f00.jpg);
-  // background-color: #1dceb0;
-  // background-repeat: no-repeat;
-  // background-size: 100vw;
   z-index: -3;
   min-height: 100vh;
+  padding-bottom: 1rem;
 
 // barra de navegacion
    .menu {
@@ -202,7 +200,7 @@ body{
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
 
     div{
       a{
@@ -219,7 +217,15 @@ body{
         }
       }
     }
+
+
+    // estilos para el icono de tres puntos
+    .dropdown-toggle::after {
+      display: none;
   }
+    //fin de los estilos para ocultar la flecha que acompaña el icono
+  }
+}
 
   .card-body{
     .mb-1{
@@ -232,50 +238,70 @@ body{
   }
 
   .card-footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    padding: 1rem 0 ;
-    .btn-edit {
-      margin-top: 15px;
-      margin: 0;
-      padding: 5px 20px;
-      text-decoration: none;
-      background-color: rgb(6, 185, 60);
-      font-size: 1.5rem;
-      color: white;
-      border-radius: 0.5rem;
-      border: solid 0;
-      cursor: pointer;
-      transition: transform 0.3s;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-direction: row;
+    // padding: 1rem 0 ;
+    // .btn-edit {
+    //   margin-top: 15px;
+    //   margin: 0;
+    //   padding: 5px 20px;
+    //   text-decoration: none;
+    //   background-color: rgb(6, 185, 60);
+    //   font-size: 1.5rem;
+    //   color: white;
+    //   border-radius: 0.5rem;
+    //   border: solid 0;
+    //   cursor: pointer;
+    //   transition: transform 0.3s;
     
-      &:hover {
-        background-color: rgb(15, 160, 51);
-        transform: translateY(-3px);
+    //   &:hover {
+    //     background-color: rgb(15, 160, 51);
+    //     transform: translateY(-3px);
+    //   }
+    // }
+    // form{
+    //   padding: 0;
+    //   margin: 0;
+    //   .btn-delete{
+    //   padding: 5px 10px;
+    //   margin-left: 2rem;
+    //   background-color: rgb(199, 4, 20);
+    //   font-size: 1.5rem;
+    //   color: white;
+    //   border-radius: 0.5rem;
+    //   border: solid 0;
+    //   cursor: pointer;
+    //   transition: transform 0.3s;
+    
+    //   &:hover {
+    //     background-color: rgb(192, 7, 7);
+    //     transform: translateY(-3px);
+    //   }
+
+    //   }
+
+    // }
+
+    .container-acciones-users{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;    
+      gap: 1rem; 
+      .compartir{
+        .btn-group{       
+          .dropdown-toggle::after {
+            display: none;
+        }
+        .dropdown-menu a {
+          display: flex;
+          justify-content: center;
+          font-size: 1.5em;
+        }
       }
     }
-    form{
-      padding: 0;
-      margin: 0;
-      .btn-delete{
-      padding: 5px 10px;
-      margin-left: 2rem;
-      background-color: rgb(199, 4, 20);
-      font-size: 1.5rem;
-      color: white;
-      border-radius: 0.5rem;
-      border: solid 0;
-      cursor: pointer;
-      transition: transform 0.3s;
-    
-      &:hover {
-        background-color: rgb(192, 7, 7);
-        transform: translateY(-3px);
-      }
-
-      }
-
     }
 
   }
@@ -612,5 +638,5 @@ body{
   }
  
 }
-}
+
 
