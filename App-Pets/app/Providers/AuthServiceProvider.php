@@ -4,8 +4,8 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\Models\FoundPet;
-use App\Policies\FoundPetPolicy;
+use App\Models\Like;
+use App\Policies\LikePolicy;
 use Illuminate\Support\Facades\Gate; 
 
 class AuthServiceProvider extends ServiceProvider
@@ -16,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // FoundPet::class => FoundPetPolicy::class,
+        Like::class => LikePolicy::class,
 
     ];
 

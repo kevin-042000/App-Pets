@@ -98,6 +98,8 @@
                     
                 <div class="card-footer d-flex justify-content-center align-items-center">
                     <div class="container-acciones-users">
+                        {{-- boton y contador de like --}}
+                        @livewire('like-button', ['modelId' => $LostPet->id, 'modelType' => 'lost-pet'])
                         {{-- boton para el modal de cometario --}}
                         <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#formulario-comment-lost-pets">
                             Comentar

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <link rel="icon" type="image/png" href="{{ asset('icons-App-Pets/f24.jpg') }}">
+    @livewireStyles
     
     @vite(['resources/css/app.scss'])
 
@@ -14,5 +15,6 @@
       @yield('content')  
 
       @vite('resources/js/app.js')
+      @livewireScripts
 </body>
 </html>

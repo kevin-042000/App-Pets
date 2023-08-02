@@ -11,6 +11,7 @@ use App\Models\ChatMessage;
 use App\Models\FoundPet;
 use App\Models\LostPet;
 use App\Models\UserProfile;
+use App\Models\Like;
 
 
  
@@ -81,6 +82,11 @@ class User extends Authenticatable
     public function foundPetComments()
     {
         return $this->hasMany(FoundPetComment::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 
 
