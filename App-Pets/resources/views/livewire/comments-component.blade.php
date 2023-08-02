@@ -1,0 +1,7 @@
+<div>
+    ({{ $commentsCount }})
+</div>
+
+
+
+   

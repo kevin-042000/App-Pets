@@ -290,7 +290,19 @@ body{
       justify-content: center;
       align-items: center;
       flex-direction: row;    
-      gap: 1rem; 
+      gap: 3rem; 
+      .container-like{
+        margin: 0;
+        padding: 0;
+        button{
+          padding: 0.3rem;
+          background-color: transparent;
+          border: none;
+          i{
+            font-size: 1.5rem;
+          }
+        }
+      }
       .compartir{
         .btn-group{       
           .dropdown-toggle::after {
@@ -454,8 +466,8 @@ body{
   margin: 0 auto;
   margin-bottom: 1rem;
   padding: 1rem;
-  background-color: rgb(86, 168, 31);
-  // background: white;
+  // background-color: rgb(86, 168, 31);
+  background: rgb(192, 189, 189);
   border-radius: 10px;
   form{
     width: 100%;

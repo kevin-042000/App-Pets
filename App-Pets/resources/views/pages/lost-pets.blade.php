@@ -100,6 +100,15 @@
                     <div class="container-acciones-users">
                         {{-- boton y contador de like --}}
                         @livewire('like-button', ['modelId' => $LostPet->id, 'modelType' => 'lost-pet'])
+
+                        {{-- componente de contador y ocultador de comentarios --}}
+                        <button id="toggle-comments-btn">Comentarios
+                            @livewire('comments-component', ['modelId' => $LostPet->id, 'modelType' => 'lost-pet'])
+                        </button>
+                     
+
+
+
                         {{-- boton para el modal de cometario --}}
                         <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#formulario-comment-lost-pets">
                             Comentar
@@ -137,9 +146,9 @@
                 </div>
             </div>
 
-
+           
             @if($LostPet->lostPetComments->isNotEmpty())
-                <div class="containter-comentarios">
+                <div class="containter-comentarios" id="comments-section" style="display: none">
                     <div class="comentario">
                         <div class="title-comment">
                             <h3>Comentarios</h3>
@@ -173,6 +182,7 @@
                     </div>
             </div>
             @endif
+          
               
 
 

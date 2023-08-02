@@ -1,4 +1,4 @@
-<div>
+<div class="container-like">
     <button wire:click="toggleLike" wire:loading.attr="disabled">
         <!-- Aquí, podemos usar un icono de corazón para representar el "like". Cambiará dependiendo de si el usuario ha dado "like" a la publicación o no. -->
         @if($isLiked)
