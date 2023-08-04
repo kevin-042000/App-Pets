@@ -72,77 +72,56 @@
                 </div>
 
                 <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                    <div class="container-h3">
+                    <hr>
+                    <div class="container-title-pets">
                         <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
                             Se perdio {{ $LostPet->name }}
                         </h3>
                     </div>
-                    <div class="mb-1">
+                    <hr >
+                    <div class="container-description-pets">
                         <p>{{ $LostPet->description }}</p>
-                    </div>
-                    <div class="mb-1">
-                        <p>Se perdio en: {{ $LostPet->location }}</p>
-                    </div>
-                    <div class="mb-1">
-                        <p>Fecha en la que se perdio: {{ \Carbon\Carbon::parse($LostPet->date_lost)->format('d/m/Y') }}</p>
                     </div>
 
                     {{-- el if comprueba si existe una img, si existe la muestra --}}
                     @if ($LostPet->photo && file_exists(public_path('storage/images/'.$LostPet->photo)))
-                        <div class="mb-1">
+                        <div class="container-img-pets">
                             <img class="card-img" src="{{ asset('storage/images/'.$LostPet->photo) }}" alt="img de la mascota">
                         </div>
                     @endif
 
+                    <div class="container-location-pets">
+                        <p>Se perdio en {{ $LostPet->location }}</p>
+                    </div>
+                    <div class="container-date-pets">
+                        <p>Se perdio el {{ \Carbon\Carbon::parse($LostPet->date_lost)->format('d/m/Y') }}</p>
+                    </div>
+                    
                     </div>
                     
                 <div class="card-footer d-flex justify-content-center align-items-center">
+                    
                     <div class="container-acciones-users">
                         {{-- boton y contador de like --}}
                         @livewire('like-button', ['modelId' => $LostPet->id, 'modelType' => 'lost-pet'])
 
                         {{-- componente de contador y ocultador de comentarios --}}
-                        <button id="toggle-comments-btn">Comentarios
-                            @livewire('comments-component', ['modelId' => $LostPet->id, 'modelType' => 'lost-pet'])
+                        <div class="container-comment-count"> 
+                        <button class="btn-coment-count" id="toggle-comments-btn">Comentarios 
                         </button>
-                     
-
-
-
+                        @livewire('comments-component', ['modelId' => $LostPet->id, 'modelType' => 'lost-pet'])
+                        </div>
                         {{-- boton para el modal de cometario --}}
                         <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#formulario-comment-lost-pets">
                             Comentar
                         </button>
-                        {{-- incluir el modal --}}
-                        @include('components.modal-create-comment-lost-pets') 
+                        {{-- incluir el modal con el formulario para comentarios --}}
+                        @include('components.modal-create-comment-lost-pets')
 
-                        <div class="compartir">
-                            <div class="btn-group dropend">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Compartir
-                                </button>
-                                <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-                                    <li>
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" target="_blank" >
-                                            <i class="bi bi-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li>
-                                        <a href="https://api.whatsapp.com/send?text={{ urlencode('Echa un vistazo a esto: ' . request()->fullUrl()) }}" target="_blank" >
-                                            <i class="bi bi-whatsapp"></i>
-                                        </a>                                                                                  
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li>
-                                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->fullUrl()) }}&text={{ urlencode('Echa un vistazo a esto:') }}" target="_blank">
-                                            <i class="bi bi-twitter"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                         {{-- incluir el boton de compartir --}}
+                         @include('components.btn-compartir') 
                          </div>
+
                 </div>
             </div>
 
