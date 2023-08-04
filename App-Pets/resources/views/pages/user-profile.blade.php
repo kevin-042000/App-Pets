@@ -9,13 +9,17 @@
 <section class="container">
 
     {{-- inicio modal para mostrar formulario--}}
-
+   
  <!-- Button trigger modal -->
- <div class="container-boton-modal">
-    <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#form-user-profile">
-        Cargar datos del usuario
-    </button>
-     </div>
+ @auth
+    @if(!$userProfile || !$userProfile->bio || !$userProfile->photo || !$userProfile->gender || !$userProfile->birthdate  || !$userProfile->contact_number || !$userProfile->contact_email )
+    <div class="container-boton-modal">
+        <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#form-user-profile">
+            Cargar datos del usuario
+        </button>
+    </div>
+    @endif
+@endauth
       
     <!-- Modal  -->
     @include('components.modal-create-user-profile')
@@ -55,6 +59,18 @@
              @if($userProfile->gender)
                  <li>
                      <p> El genero de {{ $userProfile->user->name }} es {{ $userProfile->gender }}</p>
+                 </li>
+             @endif
+
+             @if($userProfile->contact_number)
+                 <li>
+                     <p> Numero de contacto: {{ $userProfile->contact_number }}</p>
+                 </li>
+             @endif
+
+             @if($userProfile->contact_email)
+                 <li>
+                     <p> Correo electronico de contacto:  {{ $userProfile->contact_email }}</p>
                  </li>
              @endif
          </ul>   

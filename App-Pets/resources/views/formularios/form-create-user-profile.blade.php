@@ -4,7 +4,7 @@
     
     <div class="input-row">
         <select name="gender" id="gender" required>
-          <option value="">Selecciona una opción</option>
+          <option value="">Selecciona tu genero</option>
           <option value="masculino">Masculino</option>
           <option value="femenino">Femenino</option>
         </select>
@@ -13,9 +13,9 @@
 
     <div class="input-row">
         <!-- Input para el correo electrónico -->
-        <input type="email" id="email" name="email" placeholder="Correo de contacto" >
+        <input type="email" id="contact_email" name="contact_email" placeholder="Correo de contacto" >
         <!-- Input para el número de teléfono/celular -->
-        <input type="tel" id="phone" name="phone" pattern="\+54 9 \d{3} \d{3}-\d{4}" placeholder="+54 9 351 123-4567" >
+        <input type="tel" id="contact_number" name="contact_number"  placeholder="Numero de contacto" >
 
     </div>
 

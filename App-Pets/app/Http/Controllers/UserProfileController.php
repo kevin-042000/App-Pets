@@ -32,6 +32,8 @@ public function store(UserProfileRequest $request): RedirectResponse
     $userProfile->bio = $request->bio;
     $userProfile->gender = $request->gender;
     $userProfile->birthdate = $request->birthdate;
+    $userProfile->contact_email = $request->contact_email;
+    $userProfile->contact_number = $request->contact_number;
     $userProfile->photo = $fileName;
 
     $userProfile->save();
@@ -69,6 +71,8 @@ public function store(UserProfileRequest $request): RedirectResponse
     $userProfile->bio = $request->bio;
     $userProfile->birthdate = $request->birthdate;
     $userProfile->gender = $request->gender;
+    $userProfile->contact_email = $request->contact_email;
+    $userProfile->contact_number = $request->contact_number;
     
     $userProfile->save();
 

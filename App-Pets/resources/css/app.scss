@@ -708,10 +708,20 @@ body{
   }
 }
 
+.container-form-user-profile{
+  form{
+    select{
+        border-radius: 5px;
+        border: solid 0;
+        padding: 1rem ;
+        border: solid 1px rgb(156, 154, 154);
+    
+  }
+}
 }
 
 
 
 
-
+}
 

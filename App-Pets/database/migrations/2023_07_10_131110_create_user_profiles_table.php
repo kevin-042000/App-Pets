@@ -16,8 +16,10 @@ return new class extends Migration
             $table->integer('user_id');
             $table->string('bio')->nullable();
             $table->date('birthdate')->nullable();
-            $table->string('gender')->nullable();
+            $table->enum('gender', ['Masculino', 'Femenino'])->nullable();
             $table->string('photo')->nullable();
+            $table->string('contact_number')->nullable();
+            $table->string('contact_email')->nullable();
             $table->timestamps();
         });
     }
