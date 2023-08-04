@@ -36,7 +36,7 @@ public function store(UserProfileRequest $request): RedirectResponse
 
     $userProfile->save();
 
-    return redirect()->route('user-profile.showOwnProfile');
+    return redirect()->route('user-profile.showOwn');
 }
 
 

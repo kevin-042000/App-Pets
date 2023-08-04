@@ -23,7 +23,7 @@ body{
     // background-color: rgb(196, 66, 5);
     // background: linear-gradient(to right, red, yellow);
     // background: linear-gradient(to right, rgb(221, 223, 221), rgb(67, 67, 70));
-     background: linear-gradient(to right, rgb(67, 67, 70), brown, rgb(67, 67, 70));
+     background: linear-gradient(to right, rgb(56, 56, 204), rgb(233, 24, 24), rgb(52, 202, 22));
     box-shadow: 0px 2px 4px rgba(15, 15, 15, 0.4);
     .menu-content{
       width: calc(100% - 150px); // Ajusta este valor dependiendo del ancho que necesita el botón de cierre de sesión.
@@ -244,7 +244,6 @@ body{
       display: flex;
       justify-content: center;
       width: 80%;
-  
       padding: 0.5rem;
       margin: 0.5rem auto;
       border-radius: 10px;
@@ -293,51 +292,6 @@ body{
   }
 
   .card-footer{
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // flex-direction: row;
-    // padding: 1rem 0 ;
-    // .btn-edit {
-    //   margin-top: 15px;
-    //   margin: 0;
-    //   padding: 5px 20px;
-    //   text-decoration: none;
-    //   background-color: rgb(6, 185, 60);
-    //   font-size: 1.5rem;
-    //   color: white;
-    //   border-radius: 0.5rem;
-    //   border: solid 0;
-    //   cursor: pointer;
-    //   transition: transform 0.3s;
-    
-    //   &:hover {
-    //     background-color: rgb(15, 160, 51);
-    //     transform: translateY(-3px);
-    //   }
-    // }
-    // form{
-    //   padding: 0;
-    //   margin: 0;
-    //   .btn-delete{
-    //   padding: 5px 10px;
-    //   margin-left: 2rem;
-    //   background-color: rgb(199, 4, 20);
-    //   font-size: 1.5rem;
-    //   color: white;
-    //   border-radius: 0.5rem;
-    //   border: solid 0;
-    //   cursor: pointer;
-    //   transition: transform 0.3s;
-    
-    //   &:hover {
-    //     background-color: rgb(192, 7, 7);
-    //     transform: translateY(-3px);
-    //   }
-
-    //   }
-
-    // }
 
     .container-acciones-users{
       display: flex;
@@ -384,8 +338,6 @@ body{
 
       }
     }
-    
-
   }
 
   .container-no-mascota {
@@ -527,7 +479,7 @@ body{
 }
 
 }
-}
+
 
 //estilos para los comentarios de las publicaciones
 .containter-comentarios{
@@ -723,5 +675,43 @@ body{
   }
  
 }
+
+// estilos para que el form de comentarios se adapte al modal
+.container-form-comments-pets{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  form{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    div{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      textarea{
+        width: 80%;
+        &::placeholder {
+          text-align: center;
+          line-height: 70px;
+          font-size: 1rem;
+          color: #999;
+      }
+      }
+    }
+  }
+}
+
+}
+
+
+
+
 
 

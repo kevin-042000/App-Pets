@@ -4,11 +4,24 @@
 @section('content')
 {{-- menu de navegacion --}}
 @include('layouts._partials.nav')
-
-{{-- Se incluye el formulario de subir datos --}}
-@include('formularios.form-create-user-profile')
+    
 
 <section class="container">
+
+    {{-- inicio modal para mostrar formulario--}}
+
+ <!-- Button trigger modal -->
+ <div class="container-boton-modal">
+    <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#form-user-profile">
+        Cargar datos del usuario
+    </button>
+     </div>
+      
+    <!-- Modal  -->
+    @include('components.modal-create-user-profile')
+    {{-- fin modal --}}
+
+    {{-- mostrar datos del usuario --}}
   <div class="card-profile-user">
     <div class="container-name-user">
       <h5 class="name-user">{{ Auth::user()->name }}</h5>
@@ -51,22 +64,22 @@
 
 
 
- @auth
- @if($userProfile && $userProfile->user->id == Auth::user()->id)
-    <div class="container-btn-profile">
-         <a class="btn-edit" href="{{ route('user-profile.edit', $userProfile->user->id) }}">         
-           EDITAR
-         </a>
-         <form method="POST" action="{{ route('user-profile.destroy', $userProfile->user->id) }}">
-             @method('DELETE')
-             @csrf
-             <button class="btn-delete" type="submit">
-               ELIMINAR
-             </button>
-         </form>
-     </div>
- @endif
- @endauth
+  @auth
+  @if($userProfile && $userProfile->user->id == Auth::user()->id && $userProfile->bio && $userProfile->birthdate && $userProfile->gender && $userProfile->photo)
+      <div class="container-btn-profile">
+           <a class="btn-edit" href="{{ route('user-profile.edit', $userProfile->user->id) }}">         
+             EDITAR
+           </a>
+           <form method="POST" action="{{ route('user-profile.destroy', $userProfile->user->id) }}">
+               @method('DELETE')
+               @csrf
+               <button class="btn-delete" type="submit">
+                 ELIMINAR
+               </button>
+           </form>
+       </div>
+   @endif
+  @endauth
 
   </div>
       

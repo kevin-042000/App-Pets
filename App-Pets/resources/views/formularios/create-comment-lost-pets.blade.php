@@ -1,3 +1,4 @@
+<div class="container-form-comments-pets">
 <form action="{{ route('comments.storeLostPet', ['lost_pet_id' => $pet->id ?? $LostPet->id]) }}" method="POST">
     @csrf
 
@@ -7,4 +8,5 @@
 
     <button type="submit" class="btn btn-primary">Publicar comentario</button>
 </form>
+</div>
 
