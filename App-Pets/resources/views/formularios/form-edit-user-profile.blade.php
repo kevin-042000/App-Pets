@@ -3,7 +3,8 @@
 @section('title', 'Perfil')
 
 @section('content')
-<form class="form-create" action="{{ route('user-profile.update', $userProfile->user_id ?? Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
+<div class="container-form-edit">
+<form  action="{{ route('user-profile.update', $userProfile->user_id ?? Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
 
 
     @method('PUT')
@@ -39,6 +40,7 @@
         <button class="button" type="submit">Guardar</button>
     </div>
 </form>
+</div>
 @endsection
 
 

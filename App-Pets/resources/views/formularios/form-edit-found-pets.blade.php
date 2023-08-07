@@ -3,7 +3,9 @@
 @section('title', 'Found Pets')
 
 @section('content')
-<form class="form-create" action="{{ route('found-pets.update', $pet->id) }}" method="POST" enctype="multipart/form-data">
+
+<div class="container-form-edit">
+<form  action="{{ route('found-pets.update', $pet->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     
