@@ -1,22 +1,22 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\FoundPetRequest;
 use App\Models\FoundPet;
-use Illuminate\View\view;
-use Illuminate\http\RedirectResponse;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
- 
+use App\Models\FoundPetComment; 
+
 class FoundPetController extends Controller
 {
     public function index(): View
-    {
+    { 
         $FoundPets = FoundPet::with('foundPetComments')->latest()->get();
-    
-        return view('pages.found-pets', compact('FoundPets'));
+        $type = 'found';
+        return view('pages.found-pets', compact('FoundPets', 'type'));
     }
 
     public function store(FoundPetRequest $request): RedirectResponse

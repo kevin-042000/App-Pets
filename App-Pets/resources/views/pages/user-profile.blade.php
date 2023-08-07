@@ -4,7 +4,7 @@
 @section('content')
 {{-- menu de navegacion --}}
 @include('layouts._partials.nav')
-    
+     
 
 <section class="container">
 
