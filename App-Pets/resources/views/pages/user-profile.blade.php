@@ -80,13 +80,16 @@
 
 
 
+
+
+
   @auth
   @if($userProfile && $userProfile->user->id == Auth::user()->id && $userProfile->bio && $userProfile->birthdate && $userProfile->gender && $userProfile->photo)
       <div class="container-btn-profile">
-           <a class="btn-edit" href="{{ route('user-profile.edit', $userProfile->user->id) }}">         
+        <a class="btn-edit" href="{{ route('user-profile.edit', $userProfile->id) }}">         
              EDITAR
            </a>
-           <form method="POST" action="{{ route('user-profile.destroy', $userProfile->user->id) }}">
+           <form method="POST" action="{{ route('user-profile.destroy', $userProfile->id) }}">
                @method('DELETE')
                @csrf
                <button class="btn-delete" type="submit">
@@ -95,7 +98,7 @@
            </form>
        </div>
    @endif
-  @endauth
+@endauth 
 
   </div>
       

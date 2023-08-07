@@ -11,48 +11,100 @@ use App\Models\User;
 use Illuminate\View\view;
 use Illuminate\http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class UserProfileController extends Controller
 {
 
-public function store(UserProfileRequest $request): RedirectResponse
-{
-    $user = Auth::user(); // Obtiene el usuario autenticado
-    $fileName = null;
+    public function store(UserProfileRequest $request): RedirectResponse
+    {
+        $user = Auth::user(); // Obtiene el usuario autenticado
+        Log::debug('Usuario autenticado: ', ['user' => $user]);
+    
+        if(!$user) {
+            // Redirige al usuario o muestra un mensaje de error si no está autenticado.
+            return redirect()->route('login');
+        }
+    
+        $fileName = null;
+    
+        // Obtiene el perfil del usuario usando la relación definida en el modelo User
+        $userProfile = $user->profile;
+        Log::debug('Perfil de usuario obtenido: ', ['userProfile' => $userProfile]);
+    
+        if(!$userProfile) {
+            // Si el usuario no tiene un perfil, redirige o muestra un mensaje de error
+            return redirect()->route('home.index')->with('error', 'No existe un perfil de usuario para este usuario.');
+        }
+    
+        // Comprueba si se ha subido un archivo
+        if ($request->hasFile('photo')) {
+            // Si ya hay una foto, elimina la anterior
+            if ($userProfile->photo) {
+                Storage::delete('public/images/' . $userProfile->photo);
+            }
+    
+            // Sube la nueva foto
+            $fileName = time().'.'.$request->photo->extension();
+            $request->photo->storeAs('public/images', $fileName);
+    
+            // Actualiza el campo 'photo' en la base de datos
+            $userProfile->photo = $fileName;
+        }
+    
+        $userProfile->bio = $request->bio;
+        $userProfile->birthdate = $request->birthdate;
+        $userProfile->gender = $request->gender;
+        $userProfile->contact_email = $request->contact_email;
+        $userProfile->contact_number = $request->contact_number;
+    
+        $userProfile->save();
+    
+        Log::debug('Perfil de usuario después de la actualización: ', ['userProfile' => $userProfile]);
+    
+        return redirect()->route('user-profile.showOwn');
+    }
+    
 
-    // Comprueba si se ha subido un archivo
-    if ($request->hasFile('photo')) {
-        $fileName = time().'.'.$request->photo->extension(); // crea un nombre unico para la foto basandose en el momento de la subida
-        $request->photo->storeAs('public/images', $fileName); // crea una carpeta en el storage y la guarda
+
+
+
+
+public function edit(User $user)
+{
+    // comprueba si el usuario tiene un perfil
+    if ($user->profile) {
+        $userProfile = $user->profile;
+    } else {
+        // si no tiene perfil, crea un nuevo objeto UserProfile vacío
+        $userProfile = new UserProfile();
     }
 
-    // Encuentra el perfil del usuario existente o crea uno nuevo si no existe
-    $userProfile = UserProfile::firstOrNew(['user_id' => $user->id]);
-
-    $userProfile->bio = $request->bio;
-    $userProfile->gender = $request->gender;
-    $userProfile->birthdate = $request->birthdate;
-    $userProfile->contact_email = $request->contact_email;
-    $userProfile->contact_number = $request->contact_number;
-    $userProfile->photo = $fileName;
-
-    $userProfile->save();
-
-    return redirect()->route('user-profile.showOwn');
+    return view('formularios.form-edit-user-profile', compact('userProfile'));
 }
 
-
-    public function edit(UserProfile $user)
-    {
-            return view('formularios.form-edit-user-profile', compact('user'));
-    }
-    
+ 
 
 
-    public function update(UserProfileRequest $request, $id): RedirectResponse
+public function update(UserProfileRequest $request): RedirectResponse
 {
-    $userProfile = UserProfile::findOrFail($id);
-    
+    $user = Auth::user(); // Obtiene el usuario autenticado
+    Log::debug('Usuario autenticado: ', ['user' => $user]);
+
+    if(!$user) {
+        // Redirige al usuario o muestra un mensaje de error si no está autenticado.
+        return redirect()->route('login');
+    }
+
+    // Obtiene el perfil del usuario
+    $userProfile = $user->profile;
+    Log::debug('Perfil de usuario obtenido: ', ['userProfile' => $userProfile]);
+
+    if(!$userProfile) {
+        // Si el usuario no tiene un perfil, redirige o muestra un mensaje de error
+        return redirect()->route('home.index')->with('error', 'No existe un perfil de usuario para este usuario.');
+    }
+
     // Comprueba si se ha subido un archivo
     if ($request->hasFile('photo')) {
         // Si ya hay una foto, elimina la anterior
@@ -73,13 +125,13 @@ public function store(UserProfileRequest $request): RedirectResponse
     $userProfile->gender = $request->gender;
     $userProfile->contact_email = $request->contact_email;
     $userProfile->contact_number = $request->contact_number;
-    
+
     $userProfile->save();
+
+    Log::debug('Perfil de usuario después de la actualización: ', ['userProfile' => $userProfile]);
 
     return redirect()->route('user-profile.showOwn');
 }
-
-
 
 public function showOwnProfile()
 {

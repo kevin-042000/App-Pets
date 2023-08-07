@@ -1,17 +1,18 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserProfile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RegisterRequest;
-
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
-     public function register(RegisterRequest $request)
+   
+    public function register(RegisterRequest $request)
     {
         $user = new User();
         $user->name = $request->name;
@@ -19,12 +20,18 @@ class LoginController extends Controller
         $user->password = Hash::make($request->password);
         $user->password_confirmation = Hash::make($request->password_confirmation);
         $user->save();
-
+    
+        // Crear un perfil de usuario vacío
+        $userProfile = new UserProfile();
+        $userProfile->user_id = $user->id;
+        $userProfile->save();
+    
+        Log::debug('Perfil de usuario creado: ', ['userProfile' => $userProfile]);
+    
         Auth::login($user);
-
+    
         return redirect()->route('home.index');
-    }   
-
+    }
     public function login(Request $request){
 
         $credentials =[

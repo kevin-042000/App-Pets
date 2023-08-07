@@ -11,7 +11,7 @@
 
   
 
-
+ 
     {{-- Aqui se empieza a ver los datos de animales peridos --}}
     <section class="container">
 
