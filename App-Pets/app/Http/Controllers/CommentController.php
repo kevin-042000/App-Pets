@@ -12,19 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    // public function storeLostPetComment(CommentRequest $request, $lost_pet_id)
-    // {
-    //     $comment = new LostPetComment; 
-    //     $comment->body = $request->body;
-    //     $comment->user_id = Auth::id();
-    //     $comment->lost_pet_id = $lost_pet_id;
-    //     $comment->save();
 
-    //       // Emitir un evento de Livewire para actualizar el recuento de comentarios
-    //       $this->emit('commentAdded');
-        
-    //     return redirect()->route('lost-pets.index'); 
-    // }
 
     public function storeLostPetComment(CommentRequest $request, $lost_pet_id)
 {
@@ -37,7 +25,8 @@ class CommentController extends Controller
     // Emitir un evento de Livewire para actualizar el recuento de comentarios
     Livewire::dispatch('commentAdded');
 
-    return redirect()->route('lost-pets.index'); 
+    // return redirect()->route('lost-pets.index'); 
+    return back();
 }
 
     
@@ -51,7 +40,8 @@ class CommentController extends Controller
 
          
     
-        return redirect()->route('found-pets.index');
+        // return redirect()->route('found-pets.index');
+        return back();
     }
 
     public function destroy($type, $id)

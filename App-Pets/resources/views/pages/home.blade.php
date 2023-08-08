@@ -4,7 +4,7 @@
 @section('content')
 {{-- Menu de navegacion --}}
 @include('layouts._partials.nav')
-
+ 
 {{-- Aqui se empieza a ver los datos de animales peridos --}}
 @section('content')
 <section class="container">
@@ -15,91 +15,147 @@
         </div>
     @else
         {{-- Mostrar todas las mascotas ordenadas por fecha --}}
-        @foreach ($SortedPets as $pet)
-            <div class="card mt-3 mb-3 col-6 mx-auto d-block">
-                <div class="card-header">
-                    <div class="user-info d-flex align-items-center">
-                        <a href="{{ route('user-profile.showOwn', $pet->user->id) }}">
-                            @if($pet->user->profile && $pet->user->profile->photo)
-                                <img src="{{ asset('storage/images/' . $pet->user->profile->photo) }}" alt="Foto de perfil de usuario">
-                            @endif
-                            {{ $pet->user->name }}
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                    <div class="container-h3">
-                    <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
-                        {{ $pet instanceof App\Models\LostPet ? 'Se perdió' : 'Titulo: ' }}
-                        {{ $pet->name ?? $pet->title }}
-                    </h3>
-                    </div>
-                    <div class="mb-1">
-                        <p>{{ $pet->description }}</p>
-                    </div>
-                    <div class="mb-1">
-                        <p>{{ $pet instanceof App\Models\LostPet ? 'Se perdió en' : 'Se encontró en' }}:
-                            {{ $pet->location }}</p>
-                    </div>
-                    <div class="mb-1">
-                        <p>{{ $pet instanceof App\Models\LostPet ? 'Fecha en la que se perdió:' : 'Fecha en la que se encontró:' }}
-                            {{ \Carbon\Carbon::parse($pet->date_lost ?? $pet->date_found)->format('d/m/Y') }}</p>
-                    </div>
-                    {{-- el if comprueba si existe una img, si existe la muestra --}}
-                    @if ($pet->photo && file_exists(public_path('storage/images/'.$pet->photo)))
-                        <div class="mb-1">
-                            <img class="card-img" src="{{ asset('storage/images/'.$pet->photo) }}" alt="img de la mascota">
-                        </div>
-                    @endif
-                </div>
-
-                <div class="card-footer d-flex justify-content-center align-items-center">
-                    {{-- Verifica si el usuario está autenticado y verificar si el usuario actual
-                    tiene permisos para editar la mascota perdida específica.
-                    si tiene permiso se muestran los botones --}}
-                    @auth
-                        @if(Auth::user()->id === $pet->user_id)
-                            <a class="btn-edit" href="{{ $pet instanceof App\Models\LostPet ? route('lost-pets.edit', $pet->id) : route('found-pets.edit', $pet->id) }}">Editar</a>
-                            <form method="POST" action="{{ $pet instanceof App\Models\LostPet ? route('lost-pets.destroy', $pet->id) : route('found-pets.destroy', $pet->id) }}">
-                                @method('DELETE')
-                                @csrf
-                                <input class="btn-delete" type="submit" value="Eliminar">
-                            </form>
-                        @endif
-                    @endauth
-                </div>
-            
-            <!-- Mostrar detalles de la publicación aquí -->
-            <div class="comentario">
-                @if(get_class($pet) === 'App\Models\LostPet')
-                    @include('formularios.create-comment-lost-pets') 
-        
-                    @if($pet->lostPetComments->isNotEmpty())
-                        <h3>Comentarios:</h3>
-                        @foreach($pet->lostPetComments as $comment)
-                            <div class="comment">
-                                <p>{{ $comment->body }}</p>
-                                <small>Comentado por: {{ $comment->user->name }}</small>
-                            </div>
-                        @endforeach
-                    @endif
-                @elseif(get_class($pet) === 'App\Models\FoundPet')
-                    @include('formularios.create-comment-found-pet') 
-        
-                    @if($pet->foundPetComments->isNotEmpty())
-                        <h3>Comentarios:</h3>
-                        @foreach($pet->foundPetComments as $comment)
-                            <div class="comment">
-                                <p>{{ $comment->body }}</p>
-                                <small>Comentado por: {{ $comment->user->name }}</small>
-                            </div>
-                        @endforeach
-                    @endif
-                @endif
-            </div>
-        </div> <!-- Final del card -->
-        @endforeach
        
+        @foreach ($SortedPets as $pet)
+<div class="card mt-3  col-6 mx-auto d-block">
+    <div class="card-header">
+        <div class="user-info d-flex align-items-center">
+            <a href="{{ route('user-profile.showOwn', $pet->user->id) }}">
+                @if($pet->user->profile && $pet->user->profile->photo)
+                    <img src="{{ asset('storage/images/' . $pet->user->profile->photo) }}" alt="Foto de perfil de usuario">
+                @endif
+                {{ $pet->user->name }}
+            </a>
+        </div>
+
+        @auth
+            @if( Auth::user()->id == $pet->user_id)
+            <div class="btn-group dropend">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item"  href="{{ route(($pet instanceof App\Models\LostPet ? 'lost-pets' : 'found-pets') . '.edit', $pet->id) }}">Editar</a></li>
+                    <li>
+                        <form method="POST" action="{{ route(($pet instanceof App\Models\LostPet ? 'lost-pets' : 'found-pets') . '.destroy', $pet->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="dropdown-item">Eliminar</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+              @endif
+        @endauth
+    </div>
+
+    <div class="card-body d-flex justify-content-center align-items-center flex-column">
+        <hr>
+        <div class="container-title-pets">
+            <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
+                {{ $pet instanceof App\Models\LostPet ? 'Se perdió ' . $pet->name : $pet->title }}
+            </h3>
+            
+        </div>
+        <hr >
+        <div class="container-description-pets">
+            <p>{{ $pet->description }}</p>
+        </div>
+
+        @if ($pet->photo && file_exists(public_path('storage/images/'.$pet->photo)))
+            <div class="container-img-pets">
+                <img class="card-img" src="{{ asset('storage/images/'.$pet->photo) }}" alt="img de la mascota">
+            </div>
+        @endif
+
+        <div class="container-location-pets">
+            <p>{{ $pet instanceof App\Models\LostPet ? 'Se perdio en' : 'Se encontró en' }} {{ $pet->location }}</p>
+        </div>
+        <div class="container-date-pets">
+            <p>{{ $pet instanceof App\Models\LostPet ? 'Se perdio el' : 'Se encontró el' }} {{ \Carbon\Carbon::parse($pet->date_lost ?? $pet->date_found)->format('d/m/Y') }}</p>
+        </div>
+    </div>
+    
+    <div class="card-footer d-flex justify-content-center align-items-center">
+        <div class="container-acciones-users">
+            @livewire('like-button', ['modelId' => $pet->id, 'modelType' => $pet instanceof App\Models\LostPet ? 'lost-pet' : 'found-pet'])
+
+            <div class="container-comment-count"> 
+            <button class="btn-coment-count" id="toggle-comments-btn">Comentarios 
+            </button>
+            @livewire('comments-component', ['modelId' => $pet->id, 'modelType' => $pet instanceof App\Models\LostPet ? 'lost-pet' : 'found-pet'])
+            </div>
+
+            <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#formulario-comment-{{ $pet instanceof App\Models\LostPet ? 'lost-pets' : 'found-pets' }}">
+                Comentar
+            </button>
+
+            @include('components.modal-create-comment-' . ($pet instanceof App\Models\LostPet ? 'lost-pets' : 'found-pets'))
+            @include('components.btn-compartir') 
+        </div>
+    </div>
+</div>
+
+
+@if(($pet instanceof App\Models\LostPet && $pet->lostPetComments && !$pet->lostPetComments->isEmpty()) || 
+($pet instanceof App\Models\FoundPet && $pet->foundPetComments && !$pet->foundPetComments->isEmpty()))
+
+<div class="containter-comentarios" id="comments-section" style="display: none">
+    <div class="comentario">
+        <div class="title-comment">
+            <h3>Comentarios</h3>
+        </div>
+
+        @if($pet instanceof App\Models\LostPet)
+            @foreach($pet->lostPetComments as $comment)
+            <div class="comment">
+                <small>
+                @if($comment->user->profile && $comment->user->profile->photo)
+                    <img src="{{ asset('storage/images/' . $comment->user->profile->photo) }}" alt="User Photo" class="user-photo">
+                @endif 
+                {{ $comment->user->name }}
+                </small>
+                <div class="paraffo-destroy">
+                <p class="paragraph">{{ $comment->body }}</p>
+                <div class="comment-destroy">
+                    <form method="POST" action="{{ route('comments.destroy', ['type' => 'lost', 'comment' => $comment->id]) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"><i class="bi bi-trash-fill"></i></button>
+                    </form>
+                </div>
+                </div>
+            </div>
+            @endforeach
+        @elseif($pet instanceof App\Models\FoundPet)
+            @foreach($pet->foundPetComments as $comment)
+            <div class="comment">
+                <small>
+                @if($comment->user->profile && $comment->user->profile->photo)
+                    <img src="{{ asset('storage/images/' . $comment->user->profile->photo) }}" alt="User Photo" class="user-photo">
+                @endif 
+                {{ $comment->user->name }}
+                </small>
+                <div class="paraffo-destroy">
+                <p class="paragraph">{{ $comment->body }}</p>
+                <div class="comment-destroy">
+                    <form method="POST" action="{{ route('comments.destroy', ['type' => 'found', 'comment' => $comment->id]) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"><i class="bi bi-trash-fill"></i></button>
+                    </form>
+                </div>
+                </div>
+            </div>
+        
+            @endforeach
+        @endif
+    </div>
+</div>
+@endif
+
+
+@endforeach
     @endif
 </section>
 @endsection

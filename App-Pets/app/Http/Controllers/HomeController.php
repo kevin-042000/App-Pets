@@ -16,6 +16,7 @@ class HomeController extends Controller
     {
         $LostPets = LostPet::with('lostPetComments')->latest()->get();
         $FoundPets = FoundPet::with('foundPetComments')->latest()->get();
+       
 
         // Combinar las colecciones de Lost Pets y Found Pets en una sola
         $AllPets = $LostPets->toBase()->merge($FoundPets);
