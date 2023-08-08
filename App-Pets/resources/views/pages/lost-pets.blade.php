@@ -107,7 +107,7 @@
 
                         {{-- componente de contador y ocultador de comentarios --}}
                         <div class="container-comment-count"> 
-                        <button class="btn-coment-count" id="toggle-comments-btn">Comentarios 
+                        <button class="btn-coment-count toggle-comments-btn" >Comentarios 
                         </button>
                         @livewire('comments-component', ['modelId' => $LostPet->id, 'modelType' => 'lost-pet'])
                         </div>
@@ -127,7 +127,7 @@
 
            
             @if($LostPet->lostPetComments->isNotEmpty())
-                <div class="containter-comentarios" id="comments-section" style="display: none">
+                <div class="containter-comentarios comments-section-visible"  style="display: none">
                     <div class="comentario">
                         <div class="title-comment">
                             <h3>Comentarios</h3>

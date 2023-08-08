@@ -81,7 +81,7 @@
             @livewire('like-button', ['modelId' => $pet->id, 'modelType' => $pet instanceof App\Models\LostPet ? 'lost-pet' : 'found-pet'])
 
             <div class="container-comment-count"> 
-            <button class="btn-coment-count" id="toggle-comments-btn">Comentarios 
+            <button class="btn-coment-count toggle-comments-btn">Comentarios 
             </button>
             @livewire('comments-component', ['modelId' => $pet->id, 'modelType' => $pet instanceof App\Models\LostPet ? 'lost-pet' : 'found-pet'])
             </div>
@@ -96,11 +96,9 @@
     </div>
 </div>
 
-
-@if(($pet instanceof App\Models\LostPet && $pet->lostPetComments && !$pet->lostPetComments->isEmpty()) || 
-($pet instanceof App\Models\FoundPet && $pet->foundPetComments && !$pet->foundPetComments->isEmpty()))
-
-<div class="containter-comentarios" id="comments-section" style="display: none">
+@if(($pet instanceof App\Models\LostPet && $pet->lostPetComments->isNotEmpty()) || 
+($pet instanceof App\Models\FoundPet && $pet->foundPetComments->isNotEmpty()))
+<div class="containter-comentarios comments-section-visible" style="display: none">
     <div class="comentario">
         <div class="title-comment">
             <h3>Comentarios</h3>
@@ -108,51 +106,51 @@
 
         @if($pet instanceof App\Models\LostPet)
             @foreach($pet->lostPetComments as $comment)
-            <div class="comment">
-                <small>
-                @if($comment->user->profile && $comment->user->profile->photo)
-                    <img src="{{ asset('storage/images/' . $comment->user->profile->photo) }}" alt="User Photo" class="user-photo">
-                @endif 
-                {{ $comment->user->name }}
-                </small>
-                <div class="paraffo-destroy">
-                <p class="paragraph">{{ $comment->body }}</p>
-                <div class="comment-destroy">
-                    <form method="POST" action="{{ route('comments.destroy', ['type' => 'lost', 'comment' => $comment->id]) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit"><i class="bi bi-trash-fill"></i></button>
-                    </form>
-                </div>
-                </div>
+                <div class="comment">
+                    <small>
+                    @if($comment->user->profile && $comment->user->profile->photo)
+                        <img src="{{ asset('storage/images/' . $comment->user->profile->photo) }}" alt="User Photo" class="user-photo">
+                    @endif 
+                    {{ $comment->user->name }}
+                    </small>
+                    <div class="paraffo-destroy">
+                    <p class="paragraph">{{ $comment->body }}</p>
+                    <div class="comment-destroy">
+                        <form method="POST" action="{{ route('comments.destroy', ['type' => 'lost', 'comment' => $comment->id]) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"><i class="bi bi-trash-fill"></i></button>
+                        </form>
+                    </div>
+                    </div>
             </div>
             @endforeach
         @elseif($pet instanceof App\Models\FoundPet)
             @foreach($pet->foundPetComments as $comment)
             <div class="comment">
-                <small>
-                @if($comment->user->profile && $comment->user->profile->photo)
-                    <img src="{{ asset('storage/images/' . $comment->user->profile->photo) }}" alt="User Photo" class="user-photo">
-                @endif 
-                {{ $comment->user->name }}
-                </small>
-                <div class="paraffo-destroy">
-                <p class="paragraph">{{ $comment->body }}</p>
-                <div class="comment-destroy">
-                    <form method="POST" action="{{ route('comments.destroy', ['type' => 'found', 'comment' => $comment->id]) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit"><i class="bi bi-trash-fill"></i></button>
-                    </form>
-                </div>
-                </div>
+                    <small>
+                    @if($comment->user->profile && $comment->user->profile->photo)
+                        <img src="{{ asset('storage/images/' . $comment->user->profile->photo) }}" alt="User Photo" class="user-photo">
+                    @endif 
+                    {{ $comment->user->name }}
+                    </small>
+                    <div class="paraffo-destroy">
+                    <p class="paragraph">{{ $comment->body }}</p>
+                    <div class="comment-destroy">
+                       <form method="POST" action="{{ route('comments.destroy', ['type' => 'found', 'comment' => $comment->id]) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"><i class="bi bi-trash-fill"></i></button>
+                        </form>
+                    </div>
+                    </div>
             </div>
-        
             @endforeach
         @endif
     </div>
 </div>
 @endif
+
 
 
 @endforeach
