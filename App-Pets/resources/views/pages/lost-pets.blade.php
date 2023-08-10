@@ -71,7 +71,7 @@
                     {{-- fin del icono y su menu --}}
                 </div>
 
-                <div class="card-body d-flex justify-content-center align-items-center flex-column">
+                <div class="card-body bg-secondary d-flex justify-content-center align-items-center flex-column">
                     <hr>
                     <div class="container-title-pets">
                         <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
