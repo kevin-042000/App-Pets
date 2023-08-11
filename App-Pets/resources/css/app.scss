@@ -1,34 +1,51 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
+// variables
+$active-bg:#f44336;
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; 
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
 }
+
 
 body{
   background-image: url(/resources/imagenes-App-Pets/f00.jpg);
   z-index: -3;
   min-height: 100vh;
   padding-bottom: 1rem;
+  .modal-open .navbar {
+    padding-right: 25px; 
+  }
 
 // barra de navegacion
    .menu {
+    margin: 0;
     position: relative;
-    width: 100%;
+    width: 100%; 
     height: 5rem;
+    box-sizing: border-box;
+    overflow-x: hidden;
+
     // background-color: #4e3cf0;
     // background-color: rgb(196, 66, 5);
     // background: linear-gradient(to right, red, yellow);
     // background: linear-gradient(to right, rgb(221, 223, 221), rgb(67, 67, 70));
-     background: linear-gradient(to right, rgb(107, 106, 61), rgb(146, 136, 48), rgb(139, 95, 36));
-    box-shadow: 0px 2px 4px rgba(15, 15, 15, 0.4);
+    //  background: linear-gradient(to right, rgb(107, 106, 61), rgb(146, 136, 48), rgb(139, 95, 36));
+    background-color: rgb(209, 206, 46);
+
     .menu-content{
-      width: calc(100% - 150px); // Ajusta este valor dependiendo del ancho que necesita el botón de cierre de sesión.
-      margin: 0 auto;
+      width: 70%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
       ul {
+      margin: 0;
       list-style: none;
       display: flex;
       flex-direction: row;
@@ -36,24 +53,31 @@ body{
       align-items: center;
       gap: 3rem;
       padding: 0;
-      padding-top: 1rem;
+      padding-top: 0.5rem;
   
       li {
-        margin-right: 10px; 
+        // margin-right: 10px; 
   
         &:last-child {
           margin-right: 0; 
         }
 
+        &.active{
+          a{
+            background: $active-bg;
+            
+          }
+
+        }
+
         a {
-          display: flex;
-          flex-direction: row;
-          align-items: center; 
-          text-align: center; 
-          gap: 0.8rem;
+          padding: 1rem 2rem;
           text-decoration: none;
           color: white;
+          border-radius: 10px;
           font-size: 1rem;
+          transition: all 0.3s;
+          display: block;
           img{
             width: 2rem;
             height: 2rem;
@@ -61,6 +85,7 @@ body{
             margin-bottom: 0.4rem;
           }
           .user-photo {
+            margin: 0;
             width: 30px;      
             height: 30px;     
             border-radius: 50%;  
@@ -74,11 +99,16 @@ body{
   }
 
     .logout-container{
+      width: 30%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
       position: absolute;
-      right: 15px;
+      right: 25px;
       top: 50%;
       transform: translateY(-50%); // Centra verticalmente el botón 
       form{
+        margin: 0;
         .logout-button {
           padding: 10px 20px;
           border: solid 0;
@@ -235,6 +265,7 @@ body{
   }
 
   .card-body{
+    background-color: #dde2db;
     hr{
       border: solid black 0.5px;
       width: 90%;

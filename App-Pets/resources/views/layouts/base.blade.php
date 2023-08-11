@@ -15,6 +15,7 @@
       @yield('content')  
 
       @vite('resources/js/app.js')
+      {{-- scrip para la funcionalidad de componentes livewire --}}
       @livewireScripts
 </body>
 </html>

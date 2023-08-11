@@ -11,13 +11,13 @@
         <div class="card-header p-3 info-title">
             <h4 class="title">INFORMACION</h4>
         </div>
-        <div class="card-body bg-secondary ">
+        <div class="card-body ">
 
             <div class="card mt-3  col-8 mx-auto d-block ">
                 <div class="card-header info-title p-3">
                     <h4 class="text-center">Informacion sobre la web</h4>
                 </div>
-                <div class="card-body ">
+                <div class="card-body bg-light">
                     <p>
                         Esta aplicación web fue creada con el apoyo del framework PHP Laravel. 
                         En el ámbito del diseño y la interfaz de usuario, se adoptó Bootstrap
@@ -45,7 +45,7 @@
                 <div class="card-header info-title p-3">
                     <h4 class="text-center">Quien soy?</h4>
                 </div>
-                <div class="card-body ">
+                <div class="card-body bg-light">
                     <p> Mi nombre es Kevin Aranda y soy un apasionado programador. 
                         Mi principal objetivo con este proyecto ha sido adquirir experiencia y poner en práctica mis habilidades y conocimientos adquiridos. 
                         No solo buscaba enfrentar y superar retos, sino también tener una pieza de trabajo tangible que pueda presentar con orgullo en mi portafolio. 

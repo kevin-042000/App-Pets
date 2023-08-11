@@ -49,7 +49,7 @@
         @endauth
     </div>
 
-    <div class="card-body bg-secondary d-flex justify-content-center align-items-center flex-column">
+    <div class="card-body  d-flex justify-content-center align-items-center flex-column">
         <hr>
         <div class="container-title-pets">
             <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
@@ -86,7 +86,7 @@
             @livewire('comments-component', ['modelId' => $pet->id, 'modelType' => $pet instanceof App\Models\LostPet ? 'lost-pet' : 'found-pet'])
             </div>
 
-            <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#formulario-comment-{{ $pet instanceof App\Models\LostPet ? 'lost-pets' : 'found-pets' }}">
+            <button type="button" class="btn btn-primary openModalButton " data-bs-toggle="modal" data-bs-target="#formulario-comment-{{ $pet instanceof App\Models\LostPet ? 'lost-pets' : 'found-pets' }}">
                 Comentar
             </button>
 

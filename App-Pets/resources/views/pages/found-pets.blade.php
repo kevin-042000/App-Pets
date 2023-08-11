@@ -19,7 +19,7 @@
 
  <!-- Button trigger modal -->
  <div class="container-boton-modal">
-    <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#formulario-mascota-encontrada">
+    <button type="button" class="btn btn-primary openModalButton" data-bs-toggle="modal" data-bs-target="#formulario-mascota-encontrada">
         Cargar una mascota encontrada
     </button>
      </div>
@@ -74,7 +74,7 @@
         </div>
 
 
-        <div class="card-body bg-secondary d-flex justify-content-center align-items-center flex-column">
+        <div class="card-body d-flex justify-content-center align-items-center flex-column">
             <hr>
             <div class="container-title-pets">
                 <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
@@ -115,7 +115,7 @@
                     @livewire('comments-component', ['modelId' => $FoundPet->id, 'modelType' => 'found-pet'])
                     </div>
                     {{-- boton para el modal de cometario --}}
-                    <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#formulario-comment-found-pets">
+                    <button type="button" class="btn btn-primary openModalButton " data-bs-toggle="modal" data-bs-target="#formulario-comment-found-pets">
                         Comentar
                     </button>
                     {{-- incluir el modal con el formulario para comentarios --}}
