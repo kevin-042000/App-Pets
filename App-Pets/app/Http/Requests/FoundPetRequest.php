@@ -27,4 +27,4 @@ class FoundPetRequest extends FormRequest
             'photo' => 'nullable|image|max:2048'
         ];
     }
-}
+} 

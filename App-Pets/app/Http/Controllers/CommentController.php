@@ -10,6 +10,7 @@ use App\Models\FoundPetComment;
 use Illuminate\Support\Facades\Auth;
 
 
+
 class CommentController extends Controller
 {
 
@@ -43,6 +44,7 @@ class CommentController extends Controller
         // return redirect()->route('found-pets.index');
         return back();
     }
+
 
     public function destroy($type, $id)
     {

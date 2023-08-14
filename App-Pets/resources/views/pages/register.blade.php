@@ -7,23 +7,31 @@
     @csrf
     
     <p>Registro</p>
-    <input class="input-register-login" type="text" name="name" id="name" placeholder="Nombre" required>
-    <input class="input-register-login" type="email" name="email" id="email" placeholder="Correo electrónico" required>
-    <input class="input-register-login" type="password" name="password" id="password" placeholder="Contraseña" required autocomplete="new-password">
-    <input class="input-register-login" type="password" name="password_confirmation" id="Password_confirmation" placeholder="Confirmar contraseña" required autocomplete="new-password">
-   
-    
-{{-- 
-    <div>
-        <label for="photo">Foto:</label>
-        <input type="file" name="photo" id="photo">
-    </div> --}}
 
+    <!-- Campo Nombre -->
+    <input class="input-register-login input-name" type="text" name="name" placeholder="Nombre">
+    <div class="error-message name-error alert alert-danger container-register-error"></div>
+
+    <!-- Campo Email -->
+    <input class="input-register-login input-email" type="email" name="email" placeholder="Correo electrónico">
+    <div class="error-message email-error alert alert-danger container-register-error"></div>
+
+    <!-- Campo Contraseña -->
+    <input class="input-register-login input-password" type="password" name="password" placeholder="Contraseña"  autocomplete="new-password">
+    <div class="error-message password-error alert alert-danger container-register-error"></div>
+
+    <!-- Campo Confirmación de Contraseña -->
+    <input class="input-register-login input-password-confirmation" type="password" name="password_confirmation" placeholder="Confirmar contraseña"  autocomplete="new-password">
+    <div class="error-message password-confirmation-error alert alert-danger container-register-error" ></div>    
+
+    <!-- Botón de registro -->
     <button type="submit">Registrarse</button>
 
-     <a class="form-link" href="{{route('login.login')}}">Ya tienes una cuenta?</a>
-</form>    
-
+    <!-- Enlace a login -->
+    <a class="form-link" href="{{route('login.login')}}">Ya tienes una cuenta?</a>
+</form>
+   
+ 
 @endsection
 
     

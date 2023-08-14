@@ -7,6 +7,8 @@
     
 {{-- Contenido General --}}
 @section('content')
+
+
     {{-- Menu de navegacion --}}
     @include('layouts._partials.nav')
 
@@ -115,7 +117,7 @@
                     @livewire('comments-component', ['modelId' => $FoundPet->id, 'modelType' => 'found-pet'])
                     </div>
                     {{-- boton para el modal de cometario --}}
-                    <button type="button" class="btn btn-primary openModalButton " data-bs-toggle="modal" data-bs-target="#formulario-comment-found-pets">
+                    <button type="button" class="btn btn-primary openModalButton " data-bs-toggle="modal"  data-bs-target="#formulario-comment-found-pets">
                         Comentar
                     </button>
                     {{-- incluir el modal con el formulario para comentarios --}}
@@ -128,6 +130,8 @@
             </div>
         </div>
      
+  
+        {{-- aqui empieza la seccion de kostrar comentarios --}}
         @if($FoundPet->foundPetComments->isNotEmpty())
         <div class="containter-comentarios comments-section-visible" style="display: none">
             <div class="comentario">

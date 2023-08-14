@@ -7,8 +7,15 @@
     @csrf
 
     <p>Login</p>
-    <input class="input-register-login"  type="email" name="email" id="email" placeholder="Email" required>
-    <input class="input-register-login"  type="password" name="password" id="password" placeholder="Password" required>
+
+    {{-- campo email --}}
+    <input class="input-register-login input-email"  type="email" name="email" id="email" placeholder="Email">
+    <span class="error-message email-error alert alert-danger container-register-error"></span>
+
+    {{-- campo contraseña --}}
+    <input class="input-register-login input-password"  type="password" name="password" id="password" placeholder="Password"  >
+    <span class="error-message  password-error alert alert-danger container-register-error"></span>
+
     <button type="submit">Iniciar sesión</button>
     <a class="form-link" href="{{route('login.register')}}">No estas registrado?</a>
 </form>

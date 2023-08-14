@@ -27,5 +27,5 @@ class RegisterRequest extends FormRequest
             'password' => 'required|string|confirmed|min:6|max:16',
             'password_confirmation' => 'required|same:password'
         ];
-    }
+    } 
 }

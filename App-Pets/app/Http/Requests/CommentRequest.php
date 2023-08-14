@@ -23,8 +23,17 @@ class CommentRequest extends FormRequest
     {
         return [
             'body' => 'required', // el cuerpo del comentario es requerido
-            'lost_pet_id' => 'nullable|exists:lost_pets,id', // la id de la mascota perdida debe existir en la tabla lost_pets
-            'found_pet_id' => 'nullable|exists:found_pets,id', // la id de la mascota encontrada debe existir en la tabla found_pets
+             'lost_pet_id' => 'nullable|exists:lost_pets,id', // la id de la mascota perdida debe existir en la tabla lost_pets
+             'found_pet_id' => 'nullable|exists:found_pets,id', // la id de la mascota encontrada debe existir en la tabla found_pets
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'body.required' => 'El comentario no debe de estar vacio',
+            
         ];
     }
 }
+ 
