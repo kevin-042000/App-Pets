@@ -70,18 +70,16 @@ class UserProfileController extends Controller
 
 
 
-public function edit(User $user)
-{
-    // comprueba si el usuario tiene un perfil
-    if ($user->profile) {
-        $userProfile = $user->profile;
-    } else {
-        // si no tiene perfil, crea un nuevo objeto UserProfile vacío
-        $userProfile = new UserProfile();
+    public function edit(User $user)
+    {
+        // Obtiene el perfil del usuario autenticado
+        $authUser = Auth::user();
+        $userProfile = $authUser->profile;
+    
+        return view('formularios.form-edit-user-profile', compact('userProfile'));
     }
-
-    return view('formularios.form-edit-user-profile', compact('userProfile'));
-}
+    
+ 
 
  
 
@@ -174,6 +172,9 @@ public function showOtherUserProfile(User $user)
     $userProfile->birthdate = null;
     $userProfile->gender = null;
     $userProfile->photo = null;
+    $userProfile->contact_email = null;
+    $userProfile->contact_number = null;
+
 
     $userProfile->save();
 

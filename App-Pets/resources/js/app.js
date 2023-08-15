@@ -342,6 +342,53 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+//validacion del form del perfil de usuario
+document.querySelector('.form-perfile-user').addEventListener('submit', function(e) {
+    // Restablece todos los mensajes de error
+    document.querySelectorAll('.error-message').forEach(el => {
+        el.textContent = '';
+        el.style.display = 'none'; // oculta todos los mensajes de error al principio
+    });
+
+    let hasErrors = false;
+
+    // Validar la foto
+    const photo = document.getElementById('photo').files[0];
+    const photoError = document.querySelector('.photo-error');
+    if(photo && photo.size > 2 * 1024 * 1024) { // Mayor a 2MB
+        photoError.textContent = 'El archivo es muy pesado';
+        photoError.style.display = 'block'; // muestra el mensaje de error
+        hasErrors = true;
+    }
+
+    // Validar la biografía
+    const bio = document.getElementById('bio').value;
+    const bioError = document.querySelector('.bio-error');
+    if(bio.length > 255) {
+        bioError.textContent = 'Has excedido el máximo de caracteres disponibles';
+        bioError.style.display = 'block'; // muestra el mensaje de error
+        hasErrors = true;
+    }
+
+    // Validar el correo electrónico
+    const email = document.getElementById('contact_email').value;
+    const emailError = document.querySelector('.contact-email-error');
+    if(email && !/^\S+@\S+\.\S+$/.test(email)) {
+        emailError.textContent = 'Ingresa un correo válido';
+        emailError.style.display = 'block'; // muestra el mensaje de error
+        hasErrors = true;
+    }
+
+    if(hasErrors) {
+        e.preventDefault();
+    }
+});
+
+
+
+
+
+
 
 
 

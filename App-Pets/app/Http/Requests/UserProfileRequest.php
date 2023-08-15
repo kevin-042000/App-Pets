@@ -22,7 +22,23 @@ class UserProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
+            'gender'         => 'nullable|in:masculino,femenino',
+            'birthdate'      => 'nullable|date',
+            'contact_email'  => 'nullable|email',
+            'bio'            => 'nullable|max:255',
+            'photo'          => 'nullable|image|max:2048', 
         ];
     }
+
+    public function messages()
+{
+    return [
+        'gender.in'          => 'Selecciona un género válido.',
+        'birthdate.date'     => 'Introduce una fecha válida.',
+        'contact_email.email'=> 'Ingresa un correo válido.',
+        'bio.max'            => 'Has excedido el máximo de caracteres disponibles.',
+        'photo.image'        => 'El archivo debe ser una imagen.',
+        'photo.max'          => 'El archivo es muy pesado.'
+    ];
+}
 }
