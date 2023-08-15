@@ -1,22 +1,34 @@
-<form class="form-create" action="{{ route('found-pets.store') }}" method="POST" enctype="multipart/form-data">
+<form id="foundPetForm" class="form-create" action="{{ route('found-pets.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     
-    <h4>Publica una mascota encontrada</h4>
     <div class="input-row">
-        <input type="text" name="title" id="title" placeholder="Titulo" required>
-        <input type="text" name="location" placeholder="Ubicacion" id="location">
+        <input class="validate-title" type="text" name="title" id="title" placeholder="Titulo">
+        <input class="validate-location" type="text" name="location" id="location" placeholder="Ubicación">
     </div>
+
+    <div class="input-row">
+        <span class="title-error error-message alert alert-danger"></span>
+        <span class="location-error error-message alert alert-danger"></span>
+    </div>
+
+
 
     <div class="input-colum">
-        <textarea name="description" id="description" placeholder="Description" required></textarea>        
+        <textarea class="validate-description" name="description" id="description" placeholder="Descripción"></textarea>
+        <span class="description-error error-message alert alert-danger"></span>
     </div>
 
     <div class="input-row">
-        <input type="date" name="date_found" id="date_found" required >
-        <input type="file" name="photo" id="photo">
+        <input class="validate-date" type="date" name="date_found" id="date_found">
+        <input class="validate-photo" type="file" name="photo" id="photo">
     </div>
-     
+
+    <div class="input-row">
+        <span class="error-message date-found-error alert alert-danger"></span>
+        <span class="error-message photo-error alert alert-danger"></span>
+    </div>
+
     <div class="btn-form-edit">
-    <button class="button" type="submit">Publicar</button>
+        <button class="button" type="submit">Publicar</button>
     </div>
 </form>

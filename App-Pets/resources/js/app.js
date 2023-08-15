@@ -83,97 +83,265 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 //validacion de registro
-document.querySelector(".form-register-login").addEventListener("submit", function(event) {
-    let valid = true;
+document.addEventListener("DOMContentLoaded", function() {
 
-    // Validación de nombre
-    let name = document.querySelector(".input-name").value;
-    let nameError = document.querySelector(".name-error");
-    if(name.length < 3 || name.length > 30) {
-        valid = false;
-        nameError.textContent = "El nombre debe tener entre 3 y 30 caracteres.";
-        nameError.style.display = "block"; // Mostrar mensaje de error
-    } else {
-        nameError.style.display = "none"; // Ocultar mensaje de error
+    const registrationForm = document.querySelector(".form-register-login");
+    if (registrationForm) {
+        registrationForm.addEventListener("submit", function(event) {
+            let valid = true;
+
+            // Validación de nombre
+            let name = document.querySelector(".input-name").value;
+            let nameError = document.querySelector(".name-error");
+            if(name.length < 3 || name.length > 30) {
+                valid = false;
+                nameError.textContent = "El nombre debe tener entre 3 y 30 caracteres.";
+                nameError.style.display = "block"; // Mostrar mensaje de error
+            } else {
+                nameError.style.display = "none"; // Ocultar mensaje de error
+            }
+
+            // Validación de email
+            let email = document.querySelector(".input-email").value;
+            let emailError = document.querySelector(".email-error");
+            let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if(!emailPattern.test(email)) {
+                valid = false;
+                emailError.textContent = "Por favor, ingrese un correo electrónico válido.";
+                emailError.style.display = "block"; // Mostrar mensaje de error
+            } else {
+                emailError.style.display = "none"; // Ocultar mensaje de error
+            }
+
+            // Validación de contraseña
+            let password = document.querySelector(".input-password").value;
+            let passwordError = document.querySelector(".password-error");
+            if(password.length < 6 || password.length > 16 || !password) {
+                valid = false;
+                passwordError.textContent = !password ? "La contraseña no puede estar vacía." : "La contraseña debe tener entre 6 y 16 caracteres.";
+                passwordError.style.display = "block"; // Mostrar mensaje de error
+            } else {
+                passwordError.style.display = "none"; // Ocultar mensaje de error
+            }
+
+            // Validación de confirmación de contraseña
+            let passwordConfirmation = document.querySelector(".input-password-confirmation").value;
+            let passwordConfirmationError = document.querySelector(".password-confirmation-error");
+            if(!passwordConfirmation) {
+                valid = false;
+                passwordConfirmationError.textContent = "La confirmación de contraseña no puede estar vacía.";
+                passwordConfirmationError.style.display = "block"; // Mostrar mensaje de error
+            } else if(password !== passwordConfirmation) {
+                valid = false;
+                passwordConfirmationError.textContent = "Las contraseñas no coinciden.";
+                passwordConfirmationError.style.display = "block"; // Mostrar mensaje de error
+            } else {
+                passwordConfirmationError.style.display = "none"; // Ocultar mensaje de error
+            }
+
+            if(!valid) {
+                event.preventDefault(); // Evita que el formulario se envíe si hay errores
+            }
+        });
     }
 
-    // Validación de email
-    let email = document.querySelector(".input-email").value;
-    let emailError = document.querySelector(".email-error");
-    let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if(!emailPattern.test(email)) {
-        valid = false;
-        emailError.textContent = "Por favor, ingrese un correo electrónico válido.";
-        emailError.style.display = "block"; // Mostrar mensaje de error
-    } else {
-        emailError.style.display = "none"; // Ocultar mensaje de error
-    }
-
-    // Validación de contraseña
-    let password = document.querySelector(".input-password").value;
-    let passwordError = document.querySelector(".password-error");
-    if(password.length < 6 || password.length > 16 || !password) {
-        valid = false;
-        passwordError.textContent = !password ? "La contraseña no puede estar vacía." : "La contraseña debe tener entre 6 y 16 caracteres.";
-        passwordError.style.display = "block"; // Mostrar mensaje de error
-    } else {
-        passwordError.style.display = "none"; // Ocultar mensaje de error
-    }
-
-    // Validación de confirmación de contraseña
-    let passwordConfirmation = document.querySelector(".input-password-confirmation").value;
-    let passwordConfirmationError = document.querySelector(".password-confirmation-error");
-    if(!passwordConfirmation) {
-        valid = false;
-        passwordConfirmationError.textContent = "La confirmación de contraseña no puede estar vacía.";
-        passwordConfirmationError.style.display = "block"; // Mostrar mensaje de error
-    } else if(password !== passwordConfirmation) {
-        valid = false;
-        passwordConfirmationError.textContent = "Las contraseñas no coinciden.";
-        passwordConfirmationError.style.display = "block"; // Mostrar mensaje de error
-    } else {
-        passwordConfirmationError.style.display = "none"; // Ocultar mensaje de error
-    }
-
-    if(!valid) {
-        event.preventDefault(); // Evita que el formulario se envíe si hay errores
-    }
 });
 
 
 
 //validacion de login
-document.querySelector(".form-register-login").addEventListener("submit", function(event) {
-    let valid = true;
+document.addEventListener("DOMContentLoaded", function() {
 
-    // Validación de email
-    let email = document.querySelector(".input-email").value;
-    let emailError = document.querySelector(".email-error");
-    let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if(!emailPattern.test(email) || !email) {
-        valid = false;
-        emailError.textContent = !email ? "El correo electrónico no puede estar vacío." : "Por favor, ingrese un correo electrónico válido.";
-        emailError.style.display = "block";
-    } else {
-        emailError.style.display = "none";
+    const loginForm = document.querySelector(".form-register-login");
+    
+    if (loginForm) { // Verifica si el formulario existe antes de agregar el event listener.
+        loginForm.addEventListener("submit", function(event) {
+            let valid = true;
+
+            // Validación de email
+            let email = document.querySelector(".input-email").value;
+            let emailError = document.querySelector(".email-error");
+            let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if(!emailPattern.test(email) || !email) {
+                valid = false;
+                emailError.textContent = !email ? "El correo electrónico no puede estar vacío." : "Por favor, ingrese un correo electrónico válido.";
+                emailError.style.display = "block";
+            } else {
+                emailError.style.display = "none";
+            }
+
+            // Validación de contraseña
+            let password = document.querySelector(".input-password").value;
+            let passwordError = document.querySelector(".password-error");
+            if(password.length < 6 || password.length > 16 || !password) {
+                valid = false;
+                passwordError.textContent = !password ? "La contraseña no puede estar vacía." : "La contraseña debe tener entre 6 y 16 caracteres.";
+                passwordError.style.display = "block";
+            } else {
+                passwordError.style.display = "none";
+            }
+
+            if(!valid) {
+                event.preventDefault();
+            }
+        });
     }
 
-    // Validación de contraseña
-    let password = document.querySelector(".input-password").value;
-    let passwordError = document.querySelector(".password-error");
-    if(password.length < 6 || password.length > 16 || !password) {
-        valid = false;
-        passwordError.textContent = !password ? "La contraseña no puede estar vacía." : "La contraseña debe tener entre 6 y 16 caracteres.";
-        passwordError.style.display = "block";
-    } else {
-        passwordError.style.display = "none";
+});
+
+
+
+
+
+// validacion de publicacion lost pet
+document.addEventListener("DOMContentLoaded", function() {
+
+    const lostPetForm = document.querySelector("#lostPetForm");
+    if (lostPetForm) {
+        lostPetForm.addEventListener("submit", function(event) {
+            let valid = true;
+
+            // Validación de nombre de mascota
+            let petName = document.querySelector(".validate-name").value;
+            let petNameError = document.querySelector(".name-error");
+            if (petName.length < 3 || petName.length > 30) {
+                valid = false;
+                petNameError.textContent = "El nombre de la mascota debe tener entre 3 y 30 caracteres.";
+                petNameError.style.display = "block"; 
+            } else {
+                petNameError.style.display = "none";
+            }
+
+            // Validación de ubicación
+            let location = document.querySelector(".validate-location").value;
+            let locationError = document.querySelector(".location-error");
+            if (!location) {
+                valid = false;
+                locationError.textContent = "El campo ubicación no puede estar vacío.";
+                locationError.style.display = "block"; 
+            } else {
+                locationError.style.display = "none"; 
+            }
+
+          // Validación de descripción
+          let description = document.querySelector(".validate-description").value;
+          let descriptionError = document.querySelector(".description-error");
+
+          if (!description) {
+            valid = false;
+            descriptionError.textContent = "La descripción no puede estar vacía.";
+            descriptionError.style.display = "block"; 
+        } else if (description.length < 3 || description.length > 255) {
+            valid = false;
+            descriptionError.textContent = description.length < 3 ? "La descripción es demasiado corta." : "Has llegado al máximo de caracteres disponibles.";
+            descriptionError.style.display = "block"; 
+        } else {
+            descriptionError.style.display = "none"; 
+        }
+
+            // Validación de fecha
+            let dateLost = document.querySelector(".validate-date").value;
+            let dateLostError = document.querySelector(".date-error");
+            if (!dateLost) {
+                valid = false;
+                dateLostError.textContent = "El campo de fecha no puede estar vacío.";
+                dateLostError.style.display = "block"; 
+            } else {
+                dateLostError.style.display = "none"; 
+            }
+
+            // Validación de foto
+            let photo = document.querySelector(".validate-photo");
+            let photoError = document.querySelector(".photo-error");
+            if (photo.files && photo.files[0] && photo.files[0].size > 2048 * 1024) {
+                valid = false;
+                photoError.textContent = "El archivo es muy pesado.";
+                photoError.style.display = "block";
+            } else {
+                photoError.style.display = "none";
+            }
+
+            if (!valid) {
+                event.preventDefault(); // Evita que el formulario se envíe si hay errores
+            }
+        });
     }
 
-    if(!valid) {
-        event.preventDefault();
+});
+
+
+//validacion de found pet
+document.addEventListener("DOMContentLoaded", function() {
+
+    const foundPetForm = document.getElementById("foundPetForm");
+
+    if (foundPetForm) {
+        foundPetForm.addEventListener("submit", function(event) {
+            let valid = true;
+
+            // Validación de título
+            let title = document.querySelector(".validate-title").value;
+            let titleError = document.querySelector(".title-error");
+            if (title.length < 3 || title.length > 30) {
+                valid = false;
+                titleError.textContent = title.length < 3 ? "El título es demasiado corto." : "El título es demasiado largo.";
+                titleError.style.display = "block";
+            } else {
+                titleError.style.display = "none";
+            }
+
+            // Validación de ubicación
+            let location = document.querySelector(".validate-location").value;
+            let locationError = document.querySelector(".location-error");
+            if (!location) {
+                valid = false;
+                locationError.textContent = "El campo ubicación no puede estar vacío.";
+                locationError.style.display = "block";
+            } else {
+                locationError.style.display = "none";
+            }
+
+            // Validación de descripción
+            let description = document.querySelector(".validate-description").value;
+            let descriptionError = document.querySelector(".description-error");
+            if (description.length < 3 || description.length > 255) {
+                valid = false;
+                descriptionError.textContent = description.length < 3 ? "La descripción es demasiado corta." : "Has llegado al máximo de caracteres disponibles.";
+                descriptionError.style.display = "block";
+            } else {
+                descriptionError.style.display = "none";
+            }
+
+            // Validación de fecha
+            let dateFound = document.querySelector(".validate-date").value;
+            let dateFoundError = document.querySelector(".date-found-error");
+            if (!dateFound) {
+                valid = false;
+                dateFoundError.textContent = "El campo de fecha no puede estar vacío.";
+                dateFoundError.style.display = "block";
+            } else {
+                dateFoundError.style.display = "none";
+            }
+
+            // Validación de foto
+            let photo = document.querySelector(".validate-photo");
+            let photoError = document.querySelector(".photo-error");
+            if (photo.files && photo.files[0] && photo.files[0].size > 2048 * 1024) {
+                valid = false;
+                photoError.textContent = "El archivo es muy pesado.";
+                photoError.style.display = "block";
+            } else {
+                photoError.style.display = "none";
+            }
+
+            if (!valid) {
+                event.preventDefault(); // Evita que el formulario se envíe si hay errores
+            }
+        });
     }
 });
 
 
 
-// validacion de publicacion 
+
+

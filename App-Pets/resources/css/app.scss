@@ -37,7 +37,7 @@ body{
     // background: linear-gradient(to right, red, yellow);
     // background: linear-gradient(to right, rgb(221, 223, 221), rgb(67, 67, 70));
     //  background: linear-gradient(to right, rgb(107, 106, 61), rgb(146, 136, 48), rgb(139, 95, 36));
-    background-color: rgb(241, 109, 21);
+    background-color: rgb(58, 235, 42);
 
     .menu-content{
       width: 70%;
@@ -684,12 +684,15 @@ body{
     justify-content: center;
     align-items: center;
     gap: 10px; 
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     input{
       padding: 1rem 2rem;
     }
     .file{
+      width: 50%;
+    }
+    .message-pet{
       width: 50%;
     }
   }
@@ -736,7 +739,7 @@ body{
     gap: 2rem;
 
     .button{
-      margin-top: 10px;
+      margin-top: 5px;
       padding: 5px 10px;
       background-color: rgb(65, 118, 231);
       width: 50%;
