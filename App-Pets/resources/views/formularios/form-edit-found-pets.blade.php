@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="container-form-edit">
-<form  action="{{ route('found-pets.update', $pet->id) }}" method="POST" enctype="multipart/form-data">
+<form class="foundPetForm" action="{{ route('found-pets.update', $pet->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     

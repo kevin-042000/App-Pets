@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //validacion de found pet
 document.addEventListener("DOMContentLoaded", function() {
 
-    const foundPetForm = document.getElementById("foundPetForm");
+    const foundPetForm = document.querySelector(".foundPetForm");
 
     if (foundPetForm) {
         foundPetForm.addEventListener("submit", function(event) {

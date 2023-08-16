@@ -1,4 +1,4 @@
-<form id="foundPetForm" class="form-create" action="{{ route('found-pets.store') }}" method="POST" enctype="multipart/form-data">
+<form  class="form-create foundPetForm" action="{{ route('found-pets.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     
     <div class="input-row">
