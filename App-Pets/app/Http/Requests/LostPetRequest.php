@@ -24,7 +24,9 @@ class LostPetRequest extends FormRequest
         return [
             'name' => 'required|max:30|min:3',
             'description' => 'required|max:255|min:3',
-            'photo' => 'nullable|image|max:2048'
+            'photo' => 'nullable|image|max:2048',
+            'location' => 'required',
+            'date_lost' => 'required'
 
         ];
     }

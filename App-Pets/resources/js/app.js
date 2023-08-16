@@ -196,21 +196,27 @@ document.addEventListener("DOMContentLoaded", function() {
 // validacion de publicacion lost pet
 document.addEventListener("DOMContentLoaded", function() {
 
-    const lostPetForm = document.querySelector("#lostPetForm");
+    const lostPetForm = document.querySelector(".lostPetForm");
     if (lostPetForm) {
         lostPetForm.addEventListener("submit", function(event) {
             let valid = true;
 
-            // Validación de nombre de mascota
-            let petName = document.querySelector(".validate-name").value;
-            let petNameError = document.querySelector(".name-error");
-            if (petName.length < 3 || petName.length > 30) {
-                valid = false;
-                petNameError.textContent = "El nombre de la mascota debe tener entre 3 y 30 caracteres.";
-                petNameError.style.display = "block"; 
-            } else {
-                petNameError.style.display = "none";
-            }
+        // Validación de nombre de mascota
+        let petName = document.querySelector(".validate-name").value;
+        let petNameError = document.querySelector(".name-error");
+        
+        if (!petName.trim()) { 
+            valid = false;
+            petNameError.textContent = "El campo nombre no puede estar vacío.";
+            petNameError.style.display = "block";
+        } else if (petName.length < 3 || petName.length > 30) {
+            valid = false;
+            petNameError.textContent = "El nombre de la mascota debe tener entre 3 y 30 caracteres.";
+            petNameError.style.display = "block"; 
+        } else {
+            petNameError.style.display = "none";
+        }
+
 
             // Validación de ubicación
             let location = document.querySelector(".validate-location").value;

@@ -11,8 +11,6 @@
         <span class="location-error error-message alert alert-danger"></span>
     </div>
 
-
-
     <div class="input-colum">
         <textarea class="validate-description" name="description" id="description" placeholder="Descripción"></textarea>
         <span class="description-error error-message alert alert-danger"></span>

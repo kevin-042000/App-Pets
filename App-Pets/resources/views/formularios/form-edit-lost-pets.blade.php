@@ -4,23 +4,34 @@
 
 @section('content')
 <div class="container-form-edit">
-<form  action="{{ route('lost-pets.update', $pet->id) }}" method="POST" enctype="multipart/form-data">
+<form class="lostPetForm" action="{{ route('lost-pets.update', $pet->id) }}" method="POST" enctype="multipart/form-data">
     @method('PUT')
     @csrf 
         
     <h4>Edita tu publicacion de mascota perdida</h4>
     <div class="input-row">
-        <input type="text" name="name" id="name" value="{{ $pet->name }}" required>
-        <input type="text" name="location" value="{{ $pet->location }}" id="location">
-    </div>
-
-    <div class="input-colum">
-        <textarea name="description" id="description" required>{{ $pet->description }}</textarea>        
+        <input class="validate-name" type="text" name="name" id="name" value="{{ $pet->name }}" >
+        <input class="validate-location" type="text" name="location" value="{{ $pet->location }}" id="location">
     </div>
 
     <div class="input-row">
-        <input type="date" name="date_lost" id="date_lost" required value="{{ $pet->date_lost }}">
-        <input class="file" type="file" name="photo" id="photo">
+        <span class="error-message name-error alert alert-danger message-pet"></span>
+        <span class="error-message location-error alert alert-danger message-pet"></span>
+    </div>
+
+    <div class="input-colum">
+        <textarea class="validate-description" name="description" id="description" >{{ $pet->description }}</textarea>   
+        <span class="error-message description-error alert alert-danger"></span>     
+    </div>
+
+    <div class="input-row">
+        <input class="validate-date" type="date" name="date_lost" id="date_lost" required value="{{ $pet->date_lost }}">
+        <input class="file validate-photo" type="file" name="photo" id="photo">
+    </div>
+
+    <div class="input-row">
+        <span class="error-message date-error alert alert-danger"></span>
+        <span class="error-message photo-error alert alert-danger"></span>
     </div>
     
     <div class="btn-form-edit">

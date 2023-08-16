@@ -1,4 +1,4 @@
-<form id="lostPetForm" class="form-create" action="{{ route('lost-pets.store') }}" method="POST" enctype="multipart/form-data">
+<form  class="form-create lostPetForm" action="{{ route('lost-pets.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     
     <div class="input-row">
@@ -9,7 +9,6 @@
     <div class="input-row">
         <span class="error-message name-error alert alert-danger message-pet"></span>
         <span class="error-message location-error alert alert-danger message-pet"></span>
-
     </div>
 
     <div class="input-colum">
