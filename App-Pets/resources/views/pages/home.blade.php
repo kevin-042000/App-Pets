@@ -50,14 +50,13 @@
     </div>
 
     <div class="card-body  d-flex justify-content-center align-items-center flex-column">
-        <hr>
+        
         <div class="container-title-pets">
-            <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
+            <h4 class="title-pet">
                 {{ $pet instanceof App\Models\LostPet ? 'Se perdió ' . $pet->name : $pet->title }}
-            </h3>
-            
+            </h4>
         </div>
-        <hr >
+
         <div class="container-description-pets">
             <p>{{ $pet->description }}</p>
         </div>
@@ -72,7 +71,7 @@
             <p>{{ $pet instanceof App\Models\LostPet ? 'Se perdio en' : 'Se encontró en' }} {{ $pet->location }}</p>
         </div>
         <div class="container-date-pets">
-            <p>{{ $pet instanceof App\Models\LostPet ? 'Se perdio el' : 'Se encontró el' }} {{ \Carbon\Carbon::parse($pet->date_lost ?? $pet->date_found)->format('d/m/Y') }}</p>
+            <small>{{ $pet instanceof App\Models\LostPet ? 'Se perdio el' : 'Se encontró el' }} {{ \Carbon\Carbon::parse($pet->date_lost ?? $pet->date_found)->format('d/m/Y') }}</small>
         </div>
     </div>
     
@@ -101,7 +100,7 @@
 <div class="containter-comentarios comments-section-visible" style="display: none">
     <div class="comentario">
         <div class="title-comment">
-            <h3>Comentarios</h3>
+            <h4>Comentarios</h4>
         </div>
 
         @if($pet instanceof App\Models\LostPet)

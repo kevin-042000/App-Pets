@@ -72,13 +72,11 @@
                 </div>
 
                 <div class="card-body  d-flex justify-content-center align-items-center flex-column">
-                    <hr>
                     <div class="container-title-pets">
-                        <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
+                        <h4 class="title-pet">
                             Se perdio {{ $LostPet->name }}
-                        </h3>
+                        </h4>
                     </div>
-                    <hr >
                     <div class="container-description-pets">
                         <p>{{ $LostPet->description }}</p>
                     </div>
@@ -91,10 +89,11 @@
                     @endif
 
                     <div class="container-location-pets">
-                        <p>Se perdio en {{ $LostPet->location }}</p>
+                        <p class="title-location">Ubicacion donde se perdio la mascota.</p>
+                        <p>{{ $LostPet->location }}</p>
                     </div>
                     <div class="container-date-pets">
-                        <p>Se perdio el {{ \Carbon\Carbon::parse($LostPet->date_lost)->format('d/m/Y') }}</p>
+                        <small>Se perdio el {{ \Carbon\Carbon::parse($LostPet->date_lost)->format('d/m/Y') }}</small>
                     </div>
                     
                     </div>
@@ -130,7 +129,7 @@
                 <div class="containter-comentarios comments-section-visible"  style="display: none">
                     <div class="comentario">
                         <div class="title-comment">
-                            <h3>Comentarios</h3>
+                            <h4>Comentarios</h4>
                         </div>
 
                        @if($LostPet->lostPetComments)

@@ -79,7 +79,7 @@
         <div class="card-body d-flex justify-content-center align-items-center flex-column">
             <div class="container-title-pets">
                 <h4 class="title-pet">
-                    Titulo: {{ $FoundPet->title }}
+                   {{ $FoundPet->title }}
                 </h4>
             </div>
 
@@ -92,7 +92,7 @@
                 <div class="container-img-pets">
                     <img class="card-img" src="{{ asset('storage/images/'.$FoundPet->photo) }}" alt="img de la mascota">
                 </div>
-            @endif
+            @endif 
 
             <div class="container-location-pets">
                 <p class="title-location">Ubicacion donde se encontro la mascota.</p>
@@ -136,7 +136,7 @@
         <div class="containter-comentarios comments-section-visible" style="display: none">
             <div class="comentario">
                 <div class="title-comment">
-                    <h3>Comentarios</h3>
+                    <h4>Comentarios</h4>
                 </div>
 
                @if($FoundPet->foundPetComments)
