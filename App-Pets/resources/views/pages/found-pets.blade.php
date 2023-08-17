@@ -77,13 +77,12 @@
 
 
         <div class="card-body d-flex justify-content-center align-items-center flex-column">
-            <hr>
             <div class="container-title-pets">
-                <h3 class="card-title d-flex justify-content-center align-items-center pt-2">
-                    {{ $FoundPet->title }}
-                </h3>
+                <h4 class="title-pet">
+                    Titulo: {{ $FoundPet->title }}
+                </h4>
             </div>
-            <hr >
+
             <div class="container-description-pets">
                 <p>{{ $FoundPet->description }}</p>
             </div>
@@ -96,10 +95,11 @@
             @endif
 
             <div class="container-location-pets">
-                <p>Se encontro en {{ $FoundPet->location }}</p>
+                <p class="title-location">Ubicacion donde se encontro la mascota.</p>
+                <p>{{ $FoundPet->location }}</p>
             </div>
             <div class="container-date-pets">
-                <p>Se encontro el {{ \Carbon\Carbon::parse($FoundPet->date_found)->format('d/m/Y') }}</p>
+                <small>Se encontro el {{ \Carbon\Carbon::parse($FoundPet->date_found)->format('d/m/Y') }}</small>
             </div>
             
             </div>
