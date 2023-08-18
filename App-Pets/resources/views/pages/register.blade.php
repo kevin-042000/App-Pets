@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@section('title','registro')
+@section('title','Registro')
     
 @section('content')
 {{-- Formulario de registro --}}

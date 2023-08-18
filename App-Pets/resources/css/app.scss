@@ -143,12 +143,15 @@ body{
   align-items: center;
   width: 500px;
   text-align: center;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.4);
+  background: gray;
+  border-radius: 10px;
+  // border: solid 2px rgb(97, 95, 95) ;
+  
   p{
     font-size: 2rem;
     margin-bottom: 1rem;
+    color: white;
+    font-weight: bold;
   }
   .input-register-login{
     padding: 1rem;
@@ -167,10 +170,12 @@ body{
   }
   a{
     text-decoration: none;
-    color: #7a6fd8;
+    color: white;
     margin-top: 1.2rem;
+    transition: all 0.5s;
     &:hover{
       color: #4c39f8;
+      // color: white;
     }
   }
   .container-register-error{
@@ -182,13 +187,13 @@ body{
     width: 90%;
     font-size: 1.5rem;
     color: white;
-    border-radius: 0.5rem;
+    border-radius: 10px;
     border: solid 0;
     cursor: pointer;
-    transition: transform 0.3s;
+    transition: all 1s;
     &:hover{
       background-color: rgb(32, 89, 211);
-      transform: translateY(-3px); 
+      
     }
   }
 }

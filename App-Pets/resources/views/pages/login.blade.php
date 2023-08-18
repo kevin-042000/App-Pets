@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@section('title','login')
+@section('title','Login')
     
 @section('content')
 {{-- Formulario de login --}}
@@ -15,6 +15,11 @@
     {{-- campo contraseña --}}
     <input class="input-register-login input-password"  type="password" name="password" id="password" placeholder="Password"  >
     <span class="error-message  password-error alert alert-danger container-register-error"></span>
+    @if(session('loginError'))
+    <div class="alert alert-danger container-register-error">
+        {{ session('loginError') }}
+    </div>
+@endif
 
     <button type="submit">Iniciar sesión</button>
     <a class="form-link" href="{{route('login.register')}}">No estas registrado?</a>

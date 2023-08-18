@@ -91,15 +91,21 @@ document.addEventListener("DOMContentLoaded", function() {
             let valid = true;
 
             // Validación de nombre
-            let name = document.querySelector(".input-name").value;
-            let nameError = document.querySelector(".name-error");
-            if(name.length < 3 || name.length > 30) {
-                valid = false;
-                nameError.textContent = "El nombre debe tener entre 3 y 30 caracteres.";
-                nameError.style.display = "block"; // Mostrar mensaje de error
-            } else {
-                nameError.style.display = "none"; // Ocultar mensaje de error
-            }
+let name = document.querySelector(".input-name").value;
+let nameError = document.querySelector(".name-error");
+
+if (!name) {
+    valid = false;
+    nameError.textContent = "El campo nombre no puede estar vacío.";
+    nameError.style.display = "block"; // Mostrar mensaje de error
+} else if (name.length < 3 || name.length > 30) {
+    valid = false;
+    nameError.textContent = "El nombre debe tener entre 3 y 30 caracteres.";
+    nameError.style.display = "block"; // Mostrar mensaje de error
+} else {
+    nameError.style.display = "none"; // Ocultar mensaje de error
+}
+
 
             // Validación de email
             let email = document.querySelector(".input-email").value;
