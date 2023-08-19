@@ -68,7 +68,7 @@ body{
           text-decoration: none;
           color: white;
           border-radius: 10px;
-          font-size: 1rem;
+          font-size: 0.8rem;
           transition: all 0.3s;
           display: block;
           img{
@@ -118,6 +118,7 @@ body{
           border: solid 0;
           border-radius: 8px;
           transition: 0.3s;
+          font-size: 0.8rem;
           color: white;
           border: solid 2px white;
           background: rgba(255, 255, 255, 0.2);
@@ -265,9 +266,13 @@ body{
   }
   //estilos para el card header de info
   .info-title{
+    padding-top: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    h5{
+      font-size: 1rem;
+    }
   }
 
   .card-body{
@@ -364,6 +369,13 @@ body{
     }
   }
 
+  .card-info-body{
+    background: grey;
+
+    .info-p{
+      font-size: 0.8rem;
+    }
+  }
   
 
   .card-footer{
@@ -430,22 +442,26 @@ body{
         li {  
           margin-right: 2rem;    
           a {
-            padding: 1rem 2rem;
-            text-decoration: none;
-            color: white;
-            background: #3460da;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s;
-            display: block;
+            display: flex; 
+                // align-items: center; 
+                padding: 1rem 1rem;
+                text-decoration: none;
+                color: white;
+                background: #3460da;
+                border-radius: 10px;
+                font-size: 0.8rem;
+                transition: all 0.3s;
+                // justify-content: center; 
+
             &:hover {
               background-color: #007BFF;
               transform: translateY(-5px);
             }
     
             i {
-              font-size: 1rem;
-              margin-right: 10px;
+              padding-top: 1px;
+              font-size: 0.9rem;
+              margin-right: 8px;
             }
           }
         }

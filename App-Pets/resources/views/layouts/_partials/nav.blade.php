@@ -36,7 +36,7 @@
  @auth
  <div class="logout-container">
      
-     <form class="logout-button" action="{{ route('login.logout') }}" method="POST">
+     <form action="{{ route('login.logout') }}" method="POST">
          @csrf
          <button class="logout-button" type="submit"> 
             {{-- comprueba si existe una foto de perfil y si existe la muestra --}}
