@@ -19,7 +19,7 @@
 
  <!-- Button trigger modal -->
  <div class="container-boton-modal">
-<button type="button" class="btn btn-primary openModalButton" data-bs-toggle="modal" data-bs-target="#formulario-mascota-perdida">
+<button type="button" class="btn btn-primary  openModalButton" data-bs-toggle="modal" data-bs-target="#formulario-mascota-perdida">
     Cargar una mascota perdida
 </button>
  </div>

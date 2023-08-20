@@ -218,6 +218,7 @@ body{
     justify-content: center;
     button{
       padding: 1rem;
+      font-size: 0.8rem;
     }
   }
 
@@ -245,10 +246,10 @@ body{
       a{
         text-decoration: none;
         color: inherit;
-        font-size: 1.2rem;
+        font-size: 0.9rem;
         img{
-          width: 50px;      
-          height: 50px;     
+          width: 40px;      
+          height: 40px;     
           border-radius: 50%;  
           object-fit: cover;  
           margin-right: 10px; 
@@ -398,8 +399,11 @@ body{
           background-color: transparent;
           border: none;
           i{
-            font-size: 1.5rem;
+            font-size: 1rem;
           }
+        }
+        span{
+          font-size: 0.7rem;
         }
       }
       .compartir{
@@ -407,10 +411,40 @@ body{
           .dropdown-toggle::after {
             display: none;
         }
-        .dropdown-menu a {
-          display: flex;
-          justify-content: center;
-          font-size: 1.5em;
+        ul {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+      
+          li {
+              margin: 0;
+              padding: 0;
+      
+              a {
+                  text-decoration: none;
+                  color: inherit;
+                  cursor: pointer;
+                  font-size: 0.8rem;
+                  display: block;
+                  text-align: center;
+                  padding: 10px;
+                  border-bottom: 1px solid #000;
+      
+                  i {
+                      font-size: 1rem;
+                      margin-right: 10px;
+                  }
+              }
+      
+              // Seleccionar el último li y quitar el borde del enlace dentro de él
+              &:last-child a {
+                  border-bottom: none;
+              }
+          }
+      }
+      
+        .btn-compartir{
+          font-size: 0.8rem;
         }
       }
     }
@@ -425,10 +459,18 @@ body{
         color: #6a6a6b;
         background-color: transparent;
         border: none;
+        font-size: 0.8rem;
+      }
+      .contador-comments{
+        font-size: 0.7rem;
       }
 
       }
+      .openModalButton{
+        font-size: 0.8rem;
+      }
     }
+
       .container-btn-contact {
       ul {
         list-style-type: none;
@@ -495,19 +537,20 @@ body{
 .card-profile-user{
   margin: 1rem auto;
   width: 50%;
-  // background-color: #acaab9;
-   background-color: rgb(195, 197, 195);
+  background: gray;
+  // border: solid 2px white;
   border-radius: 10px;
   .container-name-user{
-    padding: 5px 0;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     .name-user{
-      font-size: 2rem;
-      font-weight: 400;
-      color: white;
+      padding-top: 0.6rem;
+      padding-bottom: 0.3rem;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: rgb(19, 18, 18);
     }
   }
   .container-img-user{
@@ -516,55 +559,87 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #dde2db;
+    // background-color: #dde2db;
+    background-color: #c8c9c8;
+    // border-bottom: solid 1px black;
     img{
-      width: 200px;
-      height: 200px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
     }
 
   }
   .container-data-user{
-    padding: 5px 0;
+    padding: 5px 0 0 0;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: rgb(241, 247, 240);
+    // background-color: rgb(241, 247, 240);
+    background: rgb(184, 183, 183);
     .container-bio-user{ 
       margin: 0 auto;
+      width: 80%;
       word-wrap: break-word;
       overflow-wrap: break-word;
       word-break: break-all;
-      max-width: 80%;
       .bio-title{
-        padding-top: 1rem;
+        text-align: center;
+        padding-top: 0.3rem;
+        font-size: 0.8rem;
+        font-weight: bold;
       }
+  
+     }
+     .container-bio-user-p{
+      width: 70%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      word-break: break-all;
+
       p{
-        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        font-size: 0.8rem;
       }
+
      }
      .container-gender-birthdate{
       width: 100%;
+      padding-top: 0.7rem;
       display: flex;
       justify-content: center;
       align-items: flex-start;
       flex-direction: column;
       gap: 1rem;
+      // border-top: solid 1px black;
+      background: rgb(145, 142, 142);
       h5{
+        font-size: 0.8rem;
+        font-weight: bold;
         margin: 0 auto;
       }
       ul{
         list-style-type: none;
         padding-left: 2rem;
         margin: 0;
+        li{
+          margin: 0;
+          padding: 0;
+          p{
+            font-size: 0.8rem;
+          }
+        }
       }
     }
 
 }
 .container-btn-profile{
-  padding: 20px 0;
+  padding: 10px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -575,8 +650,9 @@ body{
       margin: 0;
       padding: 5px 20px;
       text-decoration: none;
-      background-color: rgb(6, 185, 60);
-      font-size: 1.5rem;
+      // background-color: rgb(6, 185, 60);
+      background: green;
+      font-size: 1rem;
       color: white;
       border-radius: 0.5rem;
       border: solid 0;
@@ -592,8 +668,9 @@ body{
     button{
       padding: 5px 10px;
       margin-left: 2rem;
-      background-color: rgb(199, 4, 20);
-      font-size: 1.5rem;
+      // background-color: rgb(199, 4, 20);
+      background-color: red;
+      font-size: 1rem;
       color: white;
       border-radius: 0.5rem;
       border: solid 0;

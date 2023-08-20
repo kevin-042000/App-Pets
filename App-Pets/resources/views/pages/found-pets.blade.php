@@ -112,10 +112,14 @@
 
                     {{-- componente de contador y ocultador de comentarios --}}
                     <div class="container-comment-count"> 
-                    <button class="btn-coment-count toggle-comments-btn">Comentarios 
+
+                    <button class="btn-coment-count toggle-comments-btn">
+                        Comentarios 
                     </button>
                     @livewire('comments-component', ['modelId' => $FoundPet->id, 'modelType' => 'found-pet'])
+
                     </div>
+
                     {{-- boton para el modal de cometario --}}
                     <button type="button" class="btn btn-primary openModalButton " data-bs-toggle="modal"  data-bs-target="#formulario-comment-found-pets">
                         Comentar
@@ -131,7 +135,7 @@
         </div>
      
   
-        {{-- aqui empieza la seccion de kostrar comentarios --}}
+        {{-- aqui empieza la seccion de mostrar comentarios --}}
         @if($FoundPet->foundPetComments->isNotEmpty())
         <div class="containter-comentarios comments-section-visible" style="display: none">
             <div class="comentario">

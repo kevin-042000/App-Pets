@@ -42,9 +42,9 @@
         <div class="container-data-user">
             @if($userProfile && $userProfile->bio)
             <div class="container-bio-user">
-                <p class="bio-title">BIOGRAFIA</p>
+                <h5 class="bio-title">BIOGRAFIA</h5>
             </div>
-            <div class="container-bio-user">
+            <div class="container-bio-user-p">
                 <p>{{ $userProfile->bio }}</p>
             </div>
             @endif
