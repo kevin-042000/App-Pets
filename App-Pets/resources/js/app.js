@@ -391,6 +391,21 @@ document.querySelector('.form-perfile-user').addEventListener('submit', function
         hasErrors = true;
     }
 
+    //Validacion del numero de contacto
+    const contactNumber = document.getElementById('contact_number').value;
+const contactNumberError = document.querySelector('.contact-number-error');
+
+if(contactNumber && (!/^\d+$/.test(contactNumber) || contactNumber.length < 10)) {
+    if (!/^\d+$/.test(contactNumber)) {
+        contactNumberError.textContent = 'Solo se pueden ingresar números, no letras.';
+    } else {
+        contactNumberError.textContent = 'El número de contacto debe tener al menos 10 dígitos.';
+    }
+    contactNumberError.style.display = 'block'; // muestra el mensaje de error
+    hasErrors = true;
+}
+
+
     if(hasErrors) {
         e.preventDefault();
     }

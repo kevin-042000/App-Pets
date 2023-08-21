@@ -14,10 +14,12 @@
      
         <div class="input-row">
             <input type="email" id="contact_email" name="contact_email" placeholder="Correo de contacto">
+            <input type="tel" id="contact_number" name="contact_number" placeholder="Numero de contacto">
         </div>
 
         <div class="input-row">
             <span class="contact-email-error error-message alert alert-danger message-profile"></span>
+            <span class="contact-number-error error-message alert alert-danger message-profile"></span>
         </div>
     
         <div class="input-colum">

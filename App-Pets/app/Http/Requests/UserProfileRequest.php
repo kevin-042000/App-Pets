@@ -25,6 +25,7 @@ class UserProfileRequest extends FormRequest
             'gender'         => 'nullable|in:masculino,femenino',
             'birthdate'      => 'nullable|date',
             'contact_email'  => 'nullable|email',
+            'contact_number' => 'nullable|numeric|min:10',
             'bio'            => 'nullable|max:255',
             'photo'          => 'nullable|image|max:2048', 
         ];
@@ -36,6 +37,7 @@ class UserProfileRequest extends FormRequest
         'gender.in'          => 'Selecciona un género válido.',
         'birthdate.date'     => 'Introduce una fecha válida.',
         'contact_email.email'=> 'Ingresa un correo válido.',
+        'contact_number'     => 'El minimo de numero es de 10',
         'bio.max'            => 'Has excedido el máximo de caracteres disponibles.',
         'photo.image'        => 'El archivo debe ser una imagen.',
         'photo.max'          => 'El archivo es muy pesado.'
