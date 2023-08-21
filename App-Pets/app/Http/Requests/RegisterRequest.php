@@ -28,4 +28,11 @@ class RegisterRequest extends FormRequest
             'password_confirmation' => 'required|same:password'
         ];
     } 
+
+    public function messages()
+    {
+    return [
+        'email.unique' => 'El correo que ingresaste ya está registrado. Por favor, intenta con uno diferente.',
+    ];
+}
 }

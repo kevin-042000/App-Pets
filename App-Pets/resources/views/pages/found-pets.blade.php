@@ -37,13 +37,18 @@
     <div class="card mt-3  col-6 mx-auto d-block">
         <div class="card-header">
             <div class="user-info d-flex align-items-center">
-                <a href="{{ route('user-profile.showOwn', $FoundPet->user->id) }}">
+                @if(Auth::id() == $FoundPet->user->id)
+                    <a href="{{ route('user-profile.showOwn', $FoundPet->user->id) }}">
+                @else
+                    <a href="{{ route('user-profile.showOthers', $FoundPet->user->id) }}">
+                @endif
                     @if($FoundPet->user->profile && $FoundPet->user->profile->photo)
                         <img src="{{ asset('storage/images/' . $FoundPet->user->profile->photo) }}" alt="Foto de perfil de usuario">
                     @endif
                     {{ $FoundPet->user->name }}
                 </a>
             </div>
+            
 
             {{-- icono de tres puntos mas menu que muestra el icono --}}
 

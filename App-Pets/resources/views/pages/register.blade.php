@@ -15,6 +15,9 @@
     <!-- Campo Email -->
     <input class="input-register-login input-email" type="email" name="email" placeholder="Correo electrónico">
     <div class="error-message email-error alert alert-danger container-register-error"></div>
+    @if ($errors->has('email'))
+    <div class="alert alert-danger container-register-error">{{ $errors->first('email') }}</div>
+     @endif
 
     <!-- Campo Contraseña -->
     <input class="input-register-login input-password" type="password" name="password" placeholder="Contraseña"  autocomplete="new-password">

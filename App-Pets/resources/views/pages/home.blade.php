@@ -20,13 +20,14 @@
 <div class="card mt-3  col-6 mx-auto d-block">
     <div class="card-header">
         <div class="user-info d-flex align-items-center">
-            <a href="{{ route('user-profile.showOwn', $pet->user->id) }}">
+            <a href="{{ (Auth::id() == $pet->user->id) ? route('user-profile.showOwn', $pet->user->id) : route('user-profile.showOthers', $pet->user->id) }}">
                 @if($pet->user->profile && $pet->user->profile->photo)
                     <img src="{{ asset('storage/images/' . $pet->user->profile->photo) }}" alt="Foto de perfil de usuario">
                 @endif
                 {{ $pet->user->name }}
             </a>
         </div>
+        
 
         @auth
             @if( Auth::user()->id == $pet->user_id)
