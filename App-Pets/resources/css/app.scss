@@ -1077,3 +1077,78 @@ body{
 
 }
 
+// Estilos responsive vista mobile
+@media only screen and (max-width: 768px) {
+  body{
+   
+
+  .form-register-login{
+  margin: auto auto 10rem auto;
+  position: relative;
+  top: 4rem;
+  padding: 1rem 1rem 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  text-align: center;
+  background: gray;
+  border-radius: 10px;
+  
+  p{
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: white;
+    font-weight: bold;
+  }
+  .input-register-login{
+    padding: 0.7rem;
+    font-size: 0.7rem;
+    width: 80%;
+    border-radius: 0.5rem;
+    border: solid 1px rgb(156, 154, 154);
+    margin-bottom: 0.8rem;
+    transition: transform 0.5s;
+    &::placeholder{
+      font-size: 0.7rem;
+    }
+    &:focus {
+      outline: none;
+      border: 2px solid rgb(153, 153, 158);
+    }
+  }
+  a{
+    text-decoration: none;
+    color: white;
+    margin-top: 1.2rem;
+    transition: all 0.5s;
+    font-size: 0.7rem;
+    &:hover{
+      color: #4c39f8;
+      // color: white;
+    }
+  }
+  .container-register-error{
+    width: 80%;
+    font-size: 0.7rem;
+  }
+  button{
+    padding: 10px 20px;
+    background-color: rgb(65, 118, 231);
+    width: 80%;
+    font-size: 0.9rem;
+    color: white;
+    border-radius: 10px;
+    border: solid 0;
+    cursor: pointer;
+    transition: all 1s;
+    &:hover{
+      background-color: rgb(32, 89, 211);
+      
+    }
+  }
+}
+
+  }
+  
+}
