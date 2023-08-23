@@ -44,7 +44,8 @@
             <img src="{{ asset('storage/images/' . Auth::user()->profile->photo) }}" alt="User Photo" class="user-photo">
             @endif
         {{-- Muestra el nombre del usuario --}}
-         Cerrar sesión de {{ Auth::user()->name }}
+        <span class="d-none d-lg-inline">Cerrar sesión de {{ Auth::user()->name }}</span>
+        <span class="d-inline d-lg-none">Cerrar sesión</span>
         </button>
      </form>
  </div>
