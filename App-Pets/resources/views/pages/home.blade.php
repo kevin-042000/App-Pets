@@ -17,7 +17,7 @@
         {{-- Mostrar todas las mascotas ordenadas por fecha --}}
        
         @foreach ($SortedPets as $pet)
-<div class="card mt-3  col-6 mx-auto d-block">
+<div class="card mt-3  col-sm-6 col-md-6 mx-auto d-block">
     <div class="card-header">
         <div class="user-info d-flex align-items-center">
             <a href="{{ (Auth::id() == $pet->user->id) ? route('user-profile.showOwn', $pet->user->id) : route('user-profile.showOthers', $pet->user->id) }}">

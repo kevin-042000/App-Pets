@@ -41,7 +41,7 @@
          <button class="logout-button" type="submit"> 
             {{-- comprueba si existe una foto de perfil y si existe la muestra --}}
             @if(Auth::user()->profile && Auth::user()->profile->photo)
-            <img src="{{ asset('storage/images/' . Auth::user()->profile->photo) }}" alt="User Photo" class="user-photo">
+            <img src="{{ asset('storage/images/' . Auth::user()->profile->photo) }}" alt="User Photo" class="user-photo d-none d-lg-inline">
             @endif
         {{-- Muestra el nombre del usuario --}}
         <span class="d-none d-lg-inline">Cerrar sesión de {{ Auth::user()->name }}</span>

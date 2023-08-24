@@ -30,7 +30,7 @@
 
 
         @forelse ($LostPets as $LostPet)
-            <div class="card mt-3  col-6 mx-auto d-block">
+            <div class="card mt-3  col-sm-6 col-md-6 mx-auto d-block">
                 <div class="card-header">
                     <div class="user-info d-flex align-items-center">
                         <a href="{{ (Auth::id() == $LostPet->user->id) ? route('user-profile.showOwn', $LostPet->user->id) : route('user-profile.showOthers', $LostPet->user->id) }}">

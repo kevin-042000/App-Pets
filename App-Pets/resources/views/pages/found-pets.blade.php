@@ -34,7 +34,7 @@
 
 
     @forelse ($FoundPets as $FoundPet)
-    <div class="card mt-3  col-6 mx-auto d-block">
+    <div class="card mt-3  col-sm-6 col-md-6 mx-auto d-block">
         <div class="card-header">
             <div class="user-info d-flex align-items-center">
                 @if(Auth::id() == $FoundPet->user->id)
