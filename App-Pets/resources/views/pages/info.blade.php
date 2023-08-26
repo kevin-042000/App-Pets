@@ -7,13 +7,13 @@
 
 <section class="container">
 
-    <div class="card mt-5  col-12 mx-auto d-block ">
+    <div class="card mt-5  col-sm-12 col-md-12 mx-auto d-block ">
         <div class="card-header  info-title">
             <h5 class="title">INFORMACION</h5>
         </div>
         <div class="card-body  card-info-body ">
 
-            <div class="card  col-8 mx-auto d-block ">
+            <div class="card  col-sm-8 col-md-8 mx-auto d-block ">
                 <div class="card-header info-title ">
                     <h5 class="text-center">Informacion sobre la web</h5>
                 </div>
@@ -43,7 +43,7 @@
 
             <br>
 
-             <div class="card  col-8 mx-auto d-block">
+             <div class="card  col-sm-8 col-md-8 mx-auto d-block">
                 <div class="card-header info-title ">
                     <h5 class="text-center">Quien soy</h5>
                 </div>

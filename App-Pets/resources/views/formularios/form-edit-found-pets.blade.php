@@ -12,8 +12,8 @@
         <h4>Editar mascota encontrada</h4>
         
         <div class="input-row">
-            <input class="validate-title" type="text" name="title" id="title" value="{{ old('title', $pet->title) }}" >
-            <input class="validate-location" type="text" name="location" id="location" value="{{ old('location', $pet->location) }}">
+            <input class="validate-title" type="text" name="title" id="title" placeholder="Titulo" value="{{ old('title', $pet->title) }}" >
+            <input class="validate-location" type="text" name="location" id="location" placeholder="Ubicacion" value="{{ old('location', $pet->location) }}">
         </div>
 
         <div class="input-row">
@@ -22,7 +22,7 @@
         </div>
     
         <div class="input-colum">
-            <textarea class="validate-description" name="description" id="description" >{{ old('description', $pet->description) }}</textarea>
+            <textarea class="validate-description" name="description" id="description" placeholder="Descripcion">{{ old('description', $pet->description) }}</textarea>
             <span class="description-error error-message alert alert-danger"></span>   
         </div>
     

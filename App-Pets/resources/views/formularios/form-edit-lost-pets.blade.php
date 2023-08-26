@@ -10,8 +10,8 @@
         
     <h4>Edita tu publicacion de mascota perdida</h4>
     <div class="input-row">
-        <input class="validate-name" type="text" name="name" id="name" value="{{ $pet->name }}" >
-        <input class="validate-location" type="text" name="location" value="{{ $pet->location }}" id="location">
+        <input class="validate-name" type="text" name="name" id="name" value="{{ $pet->name }}"  placeholder="Nombre">
+        <input class="validate-location" type="text" name="location" value="{{ $pet->location }}" placeholder="Ubicacion" id="location">
     </div>
 
     <div class="input-row">
@@ -20,7 +20,7 @@
     </div>
 
     <div class="input-colum">
-        <textarea class="validate-description" name="description" id="description" >{{ $pet->description }}</textarea>   
+        <textarea class="validate-description" name="description" id="description" placeholder="Description">{{ $pet->description }}</textarea>   
         <span class="error-message description-error alert alert-danger"></span>     
     </div>
 
