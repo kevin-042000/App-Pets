@@ -52,6 +52,7 @@
                         @if( Auth::user()->id == $LostPet->user_id)
                         <div class="btn-group dropend">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{-- icono de tres puntos --}}
                                 <i class="bi bi-three-dots-vertical"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
@@ -67,8 +68,6 @@
                         </div>
                           @endif
                           @endauth    
-                     
-                      
                     {{-- fin del icono y su menu --}}
                 </div>
 

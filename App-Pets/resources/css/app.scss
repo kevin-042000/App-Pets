@@ -1095,8 +1095,8 @@ body{
         justify-content: center;
         align-items: center;
         gap: 0.1rem;
-        padding: 0;
-        padding-top: 0.5rem;
+        padding: 0.9rem 0 0 0;
+        
     
         li {     
           &:last-child {
@@ -1151,7 +1151,7 @@ body{
       }
 
         .logout-container{
-          width: 30%;
+          width: 25%;
           display: flex;
           justify-content: flex-end;
           align-items: center;
@@ -1254,7 +1254,7 @@ body{
       }
       
       .container{
-       padding: 0 2rem 6rem 2rem;
+       padding: 0 2rem 4rem 2rem;
        
         //estilos para modificar los modal
           .container-boton-modal{
@@ -1313,6 +1313,29 @@ body{
                   transform: translateY(0%);
                 }
               }
+            }
+
+            //botones eliminar y editar
+            .btn-group{
+              ul{
+                li{
+                  a{
+                    font-size: 0.6rem;
+                  }
+                  form{
+                    button{
+                      font-size: 0.6rem;
+                    }
+                  }
+                }
+              }
+            }
+
+
+            /* Cambia el color de fondo en el estado activo */
+            .dropdown-item:active {
+              background-color: #f8f9fa; /* Cambia este color al que desees */
+              color: inherit; /* Mantén el color de texto original */
             }
         
         
@@ -2066,6 +2089,25 @@ body{
     
     }
 
+//mensajes de mascotas
+    .container-no-mascota {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(185, 196, 178);
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+      .no-hay-mascota {
+        padding: 1rem;
+        margin: 0; 
+        font-size: 1rem;
+        text-align: center; 
+    }
+  }
+  
 
 
 
