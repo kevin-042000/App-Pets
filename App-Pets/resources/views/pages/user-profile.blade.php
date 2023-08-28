@@ -48,6 +48,7 @@
                 <p>{{ $userProfile->bio }}</p>
             </div>
             @endif
+    
 
             @if($userProfile && ($userProfile->gender || $userProfile->birthdate || $userProfile->contact_number || $userProfile->contact_email))
             <div class="container-gender-birthdate">
