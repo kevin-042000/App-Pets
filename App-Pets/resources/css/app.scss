@@ -137,9 +137,9 @@ body{
 // formulario de registro y login
 
 .form-register-login{
-  margin: auto;
+  margin: auto auto 10rem  auto;
   position: relative;
-  top: 8rem;
+  top: 6rem;
   padding: 1rem 1rem 1.5rem 1rem;
   display: flex;
   flex-direction: column;
@@ -318,9 +318,10 @@ body{
       align-items: center;
       .card-img{
         border: solid 1px black;
-        width:100% ;
-        height: auto;
-        object-fit: cover;
+       width: auto;
+        height: 150px;
+        object-fit: contain; /* Esto hace que la imagen se ajuste al contenedor sin recortarse. */
+        display: block; /* Evita el espacio extra que puede aparecer debajo de las imágenes inline. */
       }
     }
     .container-location-pets{
