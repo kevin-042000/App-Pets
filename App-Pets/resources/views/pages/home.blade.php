@@ -69,6 +69,7 @@
         @endif
 
         <div class="container-location-pets">
+            <p class="title-location">{{ $pet instanceof App\Models\LostPet ? 'Ubicacion donde se perdio la mascota.' : 'Ubicacion donde se encontro la mascota.' }}</p>
             <p>{{ $pet instanceof App\Models\LostPet ? 'Se perdio en' : 'Se encontró en' }} {{ $pet->location }}</p>
         </div>
         <div class="container-date-pets">

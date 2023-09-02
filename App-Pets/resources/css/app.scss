@@ -253,6 +253,30 @@ body{
       }
     }
 
+                //botones eliminar y editar
+                .btn-group{
+                  ul{
+                    li{
+                      a{
+                        font-size: 0.8rem;
+                      }
+                      form{
+                        button{
+                          font-size: 0.8rem;
+                        }
+                      }
+                    }
+                  }
+                }
+    
+    
+                /* Cambia el color de fondo en el estado activo */
+                .dropdown-item:active {
+                  background-color: #f8f9fa; /* Cambia este color al que desees */
+                  color: inherit; /* Mantén el color de texto original */
+                }
+            
+
 
     // estilos para el icono de tres puntos
     .dropdown-toggle::after {
@@ -260,6 +284,9 @@ body{
   }
     //fin de los estilos para ocultar la flecha que acompaña el icono
   }
+
+
+
   //estilos para el card header de info
   .info-title{
     padding-top: 1rem;
@@ -312,16 +339,19 @@ body{
     }
     .container-img-pets{
       width: 90%;
+      height: 250px;
+      overflow: hidden; /* oculta cualquier parte de la imagen que exceda el tamaño del contenedor */
       margin-bottom: 0.5rem;
       display: flex;
       justify-content: center;
       align-items: center;
       .card-img{
-        border: solid 1px black;
-       width: auto;
-        height: 150px;
-        object-fit: contain; /* Esto hace que la imagen se ajuste al contenedor sin recortarse. */
-        display: block; /* Evita el espacio extra que puede aparecer debajo de las imágenes inline. */
+        width: 100%;   /* la imagen ocupará todo el ancho del contenedor */
+        height: 100%;  /* la imagen ocupará todo el alto del contenedor */
+        object-fit: cover; /* la imagen cubrirá todo el espacio sin deformarse */
+        display: block; 
+        
+       
       }
     }
     .container-location-pets{
@@ -825,8 +855,10 @@ body{
     }
   }
   .input-colum{
+    width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
     margin-bottom: 5px;
 
@@ -848,6 +880,7 @@ body{
     }
   }
   textarea{
+    width: 80%;
     border-radius: 5px;
     border: solid 0;
     padding: 0.3rem ;
@@ -856,7 +889,6 @@ body{
       font-size: 1rem;
       text-align: center;
       line-height: 40px;
-
     }
   }
 
