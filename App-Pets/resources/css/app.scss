@@ -149,6 +149,7 @@ body{
   background: gray;
   border-radius: 10px;
   // border: solid 2px rgb(97, 95, 95) ;
+  border: solid 2px rgb(59, 59, 59) ;
   
   p{
     font-size: 2rem;
@@ -929,6 +930,7 @@ body{
   margin: 0 auto;
   position: relative;
   top: 8rem;
+ 
   
 
   form{
@@ -941,9 +943,12 @@ body{
     border: none;
     border-radius: 10px;
     background: gray;
+    // border: solid 2px rgb(180, 169, 169);
+    border: solid 2px rgb(56, 56, 56);
     h4{
       font-weight: bold;
       font-size: 1rem;
+      color: white;
     }
     .input-row{
       width: 80%;
@@ -1021,7 +1026,7 @@ body{
   
       .button{
         margin-top: 10px;
-        padding: 5px 10px;
+        padding: 10px 20px;
         background-color: rgb(65, 118, 231);
         width: 40%;
         text-align: center;
